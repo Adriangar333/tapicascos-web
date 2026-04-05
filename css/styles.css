@@ -1,0 +1,168 @@
+/* ========== GLOBAL ========== */
+* {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1B1F3B;
+}
+::-webkit-scrollbar-thumb {
+  background: #FF6B35;
+  border-radius: 3px;
+}
+
+::selection {
+  background: rgba(255, 107, 53, 0.3);
+  color: white;
+}
+
+/* ========== NAVBAR ========== */
+#navbar.scrolled {
+  background: rgba(18, 21, 42, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ========== HERO PARTICLES ========== */
+#hero-particles {
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255, 107, 53, 0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 60%, rgba(255, 215, 0, 0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 70%, rgba(255, 107, 53, 0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 40%, rgba(255, 255, 255, 0.15) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 20% 80%, rgba(255, 107, 53, 0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 10%, rgba(255, 215, 0, 0.2) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 60% 90%, rgba(255, 255, 255, 0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 50%, rgba(255, 107, 53, 0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 45%, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+  animation: particles-float 20s linear infinite;
+}
+
+@keyframes particles-float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+/* ========== PRODUCT CARDS ========== */
+.product-card {
+  transform: translateY(0);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;
+}
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(255, 107, 53, 0.1);
+}
+
+/* ========== SERVICE CARDS ========== */
+.service-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 40px rgba(255, 107, 53, 0.08);
+}
+
+/* ========== TESTIMONIAL CARDS ========== */
+.testimonial-card {
+  transition: transform 0.4s ease;
+}
+.testimonial-card:hover {
+  transform: translateY(-4px);
+}
+
+/* ========== VOICE WIDGET ========== */
+#voice-panel {
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+#voice-messages::-webkit-scrollbar {
+  width: 4px;
+}
+#voice-messages::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 53, 0.3);
+  border-radius: 2px;
+}
+
+/* Voice listening animation */
+.voice-listening {
+  animation: pulse-ring 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.5); }
+  70% { box-shadow: 0 0 0 15px rgba(255, 107, 53, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0); }
+}
+
+/* Voice wave animation */
+.voice-wave {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  height: 20px;
+}
+.voice-wave span {
+  width: 3px;
+  height: 100%;
+  background: #FF6B35;
+  border-radius: 3px;
+  animation: wave 1s ease-in-out infinite;
+}
+.voice-wave span:nth-child(2) { animation-delay: 0.1s; }
+.voice-wave span:nth-child(3) { animation-delay: 0.2s; }
+.voice-wave span:nth-child(4) { animation-delay: 0.3s; }
+
+@keyframes wave {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+
+/* ========== COUNT-UP ANIMATION ========== */
+[data-count] {
+  display: inline-block;
+}
+
+/* ========== LOADING DOTS ========== */
+.loading-dots {
+  display: inline-flex;
+  gap: 4px;
+}
+.loading-dots span {
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 107, 53, 0.5);
+  border-radius: 50%;
+  animation: dotPulse 1.4s ease-in-out infinite;
+}
+.loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dotPulse {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 640px) {
+  #voice-panel {
+    width: calc(100vw - 2rem);
+    right: -0.5rem;
+  }
+}
