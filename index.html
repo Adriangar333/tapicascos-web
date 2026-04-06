@@ -3,28 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tapicascos Barranquilla - Tapizado de cascos, pintura personalizada, venta y programa de intercambio de cascos en Barranquilla, Colombia.">
-    <meta name="keywords" content="cascos, tapizado, pintura, barranquilla, colombia, customización, motorcycles">
-    <meta property="og:title" content="Tapicascos Barranquilla - Customización de Cascos">
-    <meta property="og:description" content="Transforma tu casco con nuestro servicio de tapizado, pintura y más en Barranquilla.">
-    <meta property="og:type" content="business.business">
-    <meta property="og:url" content="https://tapicascos-barranquilla.com">
+    <meta name="description" content="Tapicascos Barranquilla - Personalización premium de cascos de moto. Tapizado, pintura, visores y accesorios en Barranquilla, Colombia.">
     <meta name="theme-color" content="#0A0E1A">
+    <title>Tapicascos Barranquilla | Personalización Premium de Cascos de Moto</title>
 
-    <title>Tapicascos Barranquilla | Customización de Cascos</title>
-
-    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <!-- Lucide Icons CDN -->
-    <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         * {
@@ -33,22 +21,23 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --navy: #0A0E1A;
+            --coral: #FF6B35;
+            --gold: #FFD700;
+            --light-navy: #1A1F3A;
+            --dark-navy: #050609;
+        }
+
         html {
             scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0A0E1A;
-            color: #FFFFFF;
+            background-color: var(--navy);
+            color: #e5e7eb;
             overflow-x: hidden;
-        }
-
-        :root {
-            --primary-dark: #0A0E1A;
-            --accent-coral: #FF6B35;
-            --accent-gold: #FFD700;
-            --text-secondary: #B0B8C8;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -56,32 +45,9 @@
             letter-spacing: 0.05em;
         }
 
-        .hero-title {
-            font-size: 4.5rem;
-            font-weight: 900;
-            letter-spacing: 0.02em;
-            line-height: 1;
-            margin-bottom: 1rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #FF6B35 0%, #FFD700 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 4s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.75rem; }
 
         .glass {
             background: rgba(255, 255, 255, 0.05);
@@ -89,254 +55,414 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
-            animation: float 20s ease-in-out infinite;
+        .gradient-coral {
+            background: linear-gradient(135deg, var(--coral) 0%, #FF8C5A 100%);
         }
 
-        .orb-1 {
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255, 107, 53, 0.6) 0%, transparent 70%);
-            top: 10%;
-            left: 5%;
-            animation-delay: 0s;
+        .gradient-dark {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--light-navy) 100%);
         }
 
-        .orb-2 {
-            width: 250px;
-            height: 250px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, transparent 70%);
-            top: 50%;
-            right: 5%;
-            animation-delay: 5s;
+        .gradient-gold {
+            background: linear-gradient(135deg, var(--gold) 0%, #FFC700 100%);
         }
 
-        .orb-3 {
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(255, 107, 53, 0.3) 0%, transparent 70%);
-            bottom: 10%;
-            left: 20%;
-            animation-delay: 10s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            25% { transform: translate(30px, -30px); }
-            50% { transform: translate(0, 30px); }
-            75% { transform: translate(-30px, -20px); }
+        .btn {
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #FF6B35 0%, #FF8555 100%);
+            background: linear-gradient(135deg, var(--coral) 0%, #FF8C5A 100%);
             color: white;
-            padding: 14px 32px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-            letter-spacing: 0.02em;
-            text-decoration: none;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: left 0.3s ease;
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
+            padding: 0.875rem 2rem;
+            border-radius: 0.5rem;
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
         }
 
         .btn-secondary {
             background: transparent;
-            color: var(--accent-coral);
-            padding: 12px 28px;
-            border: 2px solid var(--accent-coral);
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
+            color: var(--gold);
+            padding: 0.875rem 2rem;
+            border: 2px solid var(--gold);
+            border-radius: 0.5rem;
         }
 
         .btn-secondary:hover {
-            background: var(--accent-coral);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+            background: var(--gold);
+            color: var(--navy);
+            transform: translateY(-2px);
         }
 
-        .btn-pulse {
-            animation: pulse-glow 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 5px 20px rgba(255, 107, 53, 0.3); }
-            50% { box-shadow: 0 5px 40px rgba(255, 107, 53, 0.5); }
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
         }
 
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1.5rem 2rem;
-            background: transparent;
             transition: all 0.3s ease;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         nav.scrolled {
             background: rgba(10, 14, 26, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 107, 53, 0.2);
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 0.1em;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
+        nav a {
             transition: color 0.3s ease;
             position: relative;
         }
 
-        .nav-links a::after {
+        nav a::after {
             content: '';
             position: absolute;
             bottom: -5px;
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--accent-coral);
+            background: var(--coral);
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover {
-            color: var(--accent-coral);
-        }
-
-        .nav-links a:hover::after {
+        nav a:hover::after {
             width: 100%;
         }
 
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
+        .price-badge {
+            background: linear-gradient(135deg, var(--gold) 0%, #FFC700 100%);
+            color: var(--navy);
+            font-weight: 700;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            display: inline-block;
+            font-size: 1.1rem;
         }
 
-        .hamburger span {
-            width: 25px;
-            height: 2px;
-            background: white;
+        .delivery-badge {
+            background: rgba(255, 107, 53, 0.15);
+            color: var(--coral);
+            padding: 0.375rem 0.75rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid var(--coral);
+        }
+
+        .service-card {
+            background: var(--light-navy);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 0.75rem;
+            padding: 2rem;
             transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
         }
 
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                right: 0;
-                flex-direction: column;
-                gap: 0;
-                background: rgba(10, 14, 26, 0.98);
-                padding: 2rem;
-                list-style: none;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .hamburger {
-                display: flex;
-            }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+            transition: left 0.5s ease;
         }
 
-        .hero {
-            height: 100vh;
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            border-color: var(--coral);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .icon-wrapper {
+            width: 3.5rem;
+            height: 3.5rem;
+            background: linear-gradient(135deg, var(--coral) 0%, #FF8C5A 100%);
+            border-radius: 0.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .icon-wrapper svg {
+            width: 1.75rem;
+            height: 1.75rem;
+            color: white;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.3), transparent);
+            margin: 4rem 0;
+        }
+
+        .promo-banner {
+            background: linear-gradient(135deg, var(--coral) 0%, #FF8C5A 100%);
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, #0A0E1A 0%, #0F1428 100%);
         }
 
-        .hero-bg-pattern {
+        .promo-banner::before {
+            content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image:
-                repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 2px),
-                repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 2px);
-            background-size: 50px 50px;
-            opacity: 0.3;
+            top: -50%;
+            right: -10%;
+            width: 40rem;
+            height: 40rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            max-width: 1000px;
-            padding: 2rem;
-            animation: fadeInUp 1s ease-out;
+        .promo-banner::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 30rem;
+            height: 30rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
         }
 
-        @keyframes fadeInUp {
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        #chat-widget {
+            position: fixed;
+            bottom: 6rem;
+            right: 1.5rem;
+            z-index: 40;
+            max-width: 350px;
+        }
+
+        #chat-bubble {
+            width: 3.5rem;
+            height: 3.5rem;
+            background: linear-gradient(135deg, var(--coral) 0%, #FF8C5A 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        #chat-bubble:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        #chat-bubble svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: white;
+        }
+
+        #chat-container {
+            background: var(--light-navy);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            max-height: 500px;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+        }
+
+        .chat-message {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .chat-message.bot {
+            justify-content: flex-start;
+        }
+
+        .chat-message.user {
+            justify-content: flex-end;
+        }
+
+        .chat-message-content {
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            max-width: 85%;
+            word-wrap: break-word;
+        }
+
+        .chat-message.bot .chat-message-content {
+            background: rgba(255, 107, 53, 0.15);
+            color: #e5e7eb;
+            border-left: 2px solid var(--coral);
+        }
+
+        .chat-message.user .chat-message-content {
+            background: var(--coral);
+            color: white;
+        }
+
+        #chat-input {
+            background: var(--navy);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            color: #e5e7eb;
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            margin-top: 0.75rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+        }
+
+        #chat-input::placeholder {
+            color: rgba(229, 231, 235, 0.5);
+        }
+
+        .quick-reply-btn {
+            display: inline-block;
+            background: rgba(255, 107, 53, 0.2);
+            border: 1px solid var(--coral);
+            color: var(--coral);
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+            margin: 0.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .quick-reply-btn:hover {
+            background: var(--coral);
+            color: white;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 3.5rem;
+            height: 3.5rem;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            z-index: 30;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.15);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-float svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: white;
+        }
+
+        .fade-in {
+            opacity: 0;
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .sillas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .visor-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        .visor-table th {
+            background: var(--light-navy);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .visor-table td {
+            border: 1px solid rgba(255, 107, 53, 0.1);
+            padding: 1rem;
+        }
+
+        .visor-table tr:hover {
+            background: var(--light-navy);
+        }
+
+        .hero-title {
+            animation: slideDownFade 1s ease-out;
+        }
+
+        .hero-subtitle {
+            animation: slideUpFade 1s ease-out 0.2s both;
+        }
+
+        @keyframes slideDownFade {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUpFade {
             from {
                 opacity: 0;
                 transform: translateY(30px);
@@ -347,390 +473,46 @@
             }
         }
 
-        .hero-subtitle {
-            font-size: 1.2rem;
-            letter-spacing: 0.08em;
-            color: var(--accent-coral);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.75rem; }
+            h3 { font-size: 1.25rem; }
 
-        .rating-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-            animation: slideDown 1s ease-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
+            .services-grid {
+                grid-template-columns: 1fr;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+
+            .visor-table {
+                font-size: 0.875rem;
             }
-        }
 
-        .rating-badge .stars {
-            color: var(--accent-gold);
-            letter-spacing: 2px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        .scroll-indicator svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--accent-coral);
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
-        }
-
-        section {
-            padding: 5rem 2rem;
-            position: relative;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            text-align: center;
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-coral), var(--accent-gold));
-            border-radius: 2px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-            margin-top: 2rem;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .product-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(255, 107, 53, 0.2);
-            border-color: rgba(255, 107, 53, 0.3);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .product-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-name {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: white;
-        }
-
-        .product-price {
-            color: var(--accent-gold);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-
-        .product-description {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-
-        .product-button {
-            align-self: flex-start;
-            margin-top: auto;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            transition: all 0.4s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(255, 107, 53, 0.3);
-        }
-
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 1.5rem;
-            padding: 12px;
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(255, 215, 0, 0.1));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .service-icon svg {
-            width: 30px;
-            height: 30px;
-            color: var(--accent-coral);
-        }
-
-        .service-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .service-description {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        .promo-banner {
-            background: linear-gradient(135deg, #FF6B35 0%, #FF8555 50%, #FFD700 100%);
-            padding: 3rem 2rem;
-            border-radius: 12px;
-            text-align: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .promo-banner::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .promo-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .promo-title {
-            font-size: 2.2rem;
-            color: white;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .promo-subtitle {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .gallery-item {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            aspect-ratio: 1;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        .gallery-text {
-            color: white;
-            font-size: 1.2rem;
-            font-weight: 600;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .gallery-button {
-            margin-top: 2rem;
-            text-align: center;
-        }
-
-        .testimonials-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            #chat-widget {
+                max-width: 280px;
+            }
         }
 
         .testimonial-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 12px;
-            transition: all 0.4s ease;
+            background: var(--light-navy);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 0.75rem;
+            padding: 1.75rem;
+            text-align: center;
         }
 
-        .testimonial-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(255, 107, 53, 0.3);
-        }
-
-        .testimonial-stars {
-            color: var(--accent-gold);
-            font-size: 1.1rem;
+        .star-rating {
+            color: var(--gold);
+            font-size: 1.25rem;
             margin-bottom: 1rem;
-            letter-spacing: 2px;
-        }
-
-        .testimonial-text {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            font-weight: 600;
-            color: white;
-        }
-
-        .testimonial-location {
-            color: var(--accent-coral);
-            font-size: 0.9rem;
-        }
-
-        .location-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            align-items: stretch;
-        }
-
-        @media (max-width: 768px) {
-            .location-content {
-                grid-template-columns: 1fr;
-            }
         }
 
         .map-container {
-            border-radius: 12px;
+            position: relative;
+            width: 100%;
+            height: 400px;
+            border-radius: 0.75rem;
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            min-height: 400px;
+            margin-top: 2rem;
+            border: 1px solid rgba(255, 107, 53, 0.2);
         }
 
         .map-container iframe {
@@ -739,902 +521,867 @@
             border: none;
         }
 
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .info-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 12px;
-            display: flex;
-            gap: 1.5rem;
-            align-items: flex-start;
-            transition: all 0.3s ease;
-        }
-
-        .info-card:hover {
-            border-color: rgba(255, 107, 53, 0.3);
-        }
-
-        .info-icon {
-            flex-shrink: 0;
-            width: 50px;
-            height: 50px;
+        .trust-badge {
             display: flex;
             align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(255, 215, 0, 0.1));
-            border-radius: 10px;
-        }
-
-        .info-icon svg {
-            color: var(--accent-coral);
-            width: 24px;
-            height: 24px;
-        }
-
-        .info-text h3 {
-            margin-bottom: 0.25rem;
-            font-size: 1.1rem;
-        }
-
-        .info-text p {
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
+            gap: 0.75rem;
             background: rgba(255, 107, 53, 0.1);
-            color: var(--accent-coral);
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .social-icon:hover {
-            background: var(--accent-coral);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        footer {
-            background: rgba(0, 0, 0, 0.3);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 3rem 2rem 2rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-brand {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            letter-spacing: 0.05em;
-        }
-
-        .footer-text {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .footer-socials {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-copy {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 2rem;
-        }
-
-        .floating-btn {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            z-index: 999;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .floating-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .whatsapp-btn {
-            bottom: 2rem;
-            left: 2rem;
-            background: #25D366;
-            color: white;
-        }
-
-        .whatsapp-btn:hover {
-            box-shadow: 0 5px 30px rgba(37, 211, 102, 0.4);
-        }
-
-        .voice-btn {
-            bottom: 2rem;
-            right: 2rem;
-            background: linear-gradient(135deg, var(--accent-coral), var(--accent-gold));
-            color: white;
-            animation: pulse-glow 2s ease-in-out infinite;
-            cursor: pointer;
-            border: none;
-        }
-
-        .voice-widget {
-            display: none;
-            position: fixed;
-            bottom: 80px;
-            right: 2rem;
-            width: 350px;
-            max-width: calc(100% - 2rem);
-            background: var(--primary-dark);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            flex-direction: column;
-            max-height: 500px;
-        }
-
-        .voice-widget.active {
-            display: flex;
-        }
-
-        .widget-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .widget-header h3 {
-            margin: 0;
-            font-size: 1.1rem;
-        }
-
-        .widget-close {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-size: 1.5rem;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .widget-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1.5rem;
-        }
-
-        .message {
-            margin-bottom: 1rem;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-        }
-
-        .message.bot {
-            background: rgba(255, 107, 53, 0.1);
-            border-left: 3px solid var(--accent-coral);
-            color: white;
-        }
-
-        .message.user {
-            background: rgba(255, 215, 0, 0.1);
-            border-left: 3px solid var(--accent-gold);
-            color: white;
-            margin-left: 1rem;
-            text-align: right;
-        }
-
-        .widget-input {
+            border-left: 3px solid var(--coral);
             padding: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            gap: 0.5rem;
+            border-radius: 0.375rem;
+            margin-bottom: 1rem;
         }
 
-        .widget-input input {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            padding: 0.5rem 1rem;
-            color: white;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .widget-input input::placeholder {
-            color: var(--text-secondary);
-        }
-
-        .widget-input button {
-            background: var(--accent-coral);
-            border: none;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .widget-input button:hover {
-            background: var(--accent-gold);
-        }
-
-        @media (max-width: 1024px) {
-            .products-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            }
-
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                padding: 1rem 1.5rem;
-            }
-
-            .nav-links a {
-                display: block;
-                padding: 0.75rem 0;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            section {
-                padding: 3rem 1.5rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .hero-buttons button,
-            .hero-buttons a {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .floating-btn {
-                width: 50px;
-                height: 50px;
-                bottom: 1.5rem;
-                left: 1.5rem;
-            }
-
-            .voice-btn {
-                right: 1.5rem;
-            }
-
-            .voice-widget {
-                width: calc(100% - 3rem);
-                right: 1.5rem;
-                bottom: 70px;
-            }
-
-            .info-card {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .promo-title {
-                font-size: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .section-title {
-                font-size: 1.5rem;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .rating-badge {
-                font-size: 0.8rem;
-                padding: 0.5rem 1rem;
-            }
-
-            .product-card,
-            .service-card,
-            .testimonial-card,
-            .info-card {
-                padding: 1rem;
-            }
+        .trust-badge svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: var(--coral);
+            flex-shrink: 0;
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav id="navbar">
-        <div class="logo">
-            <img src="img/logo.png" alt="Tapicascos Logo" onerror="this.style.display='none'">
-            <span>TAPICASCOS</span>
+    <nav class="fixed w-full top-0 z-50 transition-all duration-300 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <img src="img/logo.png" alt="Tapicascos" class="h-10 w-auto" onerror="this.style.display='none'">
+                <span class="text-xl font-bold" style="font-family: 'Bebas Neue';">TAPICASCOS</span>
+            </div>
+
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#servicios" class="text-sm font-medium hover:text-coral transition-colors">Servicios</a>
+                <a href="#accesorios" class="text-sm font-medium hover:text-coral transition-colors">Accesorios</a>
+                <a href="#sillas" class="text-sm font-medium hover:text-coral transition-colors">Sillas</a>
+                <a href="#ubicacion" class="text-sm font-medium hover:text-coral transition-colors">Ubicación</a>
+                <a href="https://wa.me/573003199232" target="_blank" class="btn btn-primary btn-small">WhatsApp</a>
+            </div>
+
+            <button class="md:hidden" id="menu-btn">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
         </div>
-
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#productos">Productos</a></li>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#galeria">Galería</a></li>
-            <li><a href="#testimonios">Testimonios</a></li>
-            <li><a href="#ubicacion">Ubicación</a></li>
-        </ul>
-
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
-        <a href="https://wa.link/kvw8rr" class="btn-primary" style="display: none;" id="navCTA">WhatsApp</a>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-        <div class="hero-bg-pattern"></div>
+    <section class="relative w-full h-screen flex items-center justify-center overflow-hidden pt-20">
+        <div class="absolute inset-0 gradient-dark"></div>
+        <div class="absolute inset-0 opacity-30">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-coral rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+            <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-gold rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse" style="animation-delay: 2s;"></div>
+        </div>
 
-        <div class="hero-content">
-            <div class="rating-badge">
-                <span class="stars">★★★★★</span>
-                <span>4.9 (540+ clientes)</span>
-            </div>
-
-            <h1 class="hero-title">
-                <span class="gradient-text">TAPICASCOS</span> BARRANQUILLA
+        <div class="relative z-10 text-center px-4 max-w-5xl">
+            <h1 class="hero-title text-white mb-4" style="font-size: 4.5rem; line-height: 1.1;">
+                TAPICASCOS<br><span style="background: linear-gradient(135deg, #FF6B35 0%, #FFD700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">BARRANQUILLA</span>
             </h1>
 
-            <p class="hero-subtitle">Tapizados · Pintura · Intercambio · Cascos Nuevos</p>
+            <p class="hero-subtitle text-xl text-gray-300 mb-8">Personalización Premium de Cascos | Tapizado • Pintura • Accesorios</p>
 
-            <div class="hero-buttons">
-                <button class="btn-primary btn-pulse" onclick="document.getElementById('productos').scrollIntoView({behavior: 'smooth'})">
-                    Ver Catálogo
-                </button>
-                <a href="https://wa.link/kvw8rr" class="btn-secondary btn-pulse">
-                    WhatsApp Directo
-                </a>
+            <div class="flex justify-center gap-4 mb-8 flex-wrap">
+                <div class="flex items-center gap-2 px-4 py-2 rounded-full border border-coral glass">
+                    <span class="text-gold font-bold">4.9 ★</span>
+                    <span class="text-sm">540+ clientes</span>
+                </div>
             </div>
 
-            <div class="scroll-indicator">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#servicios" class="btn btn-primary text-lg">Ver Servicios</a>
+                <a href="https://wa.me/573003199232" target="_blank" class="btn btn-secondary text-lg">WhatsApp Directo</a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-coral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Servicios de Cascos -->
+    <section id="servicios" class="py-20 px-4 bg-navy relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-white mb-4">Servicios de Cascos</h2>
+                <p class="text-gray-400 text-lg">Personalización profesional con garantía de 3 meses</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card fade-in-up">
+                    <div class="icon-wrapper">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"></path></svg>
+                    </div>
+                    <h3 class="text-white mb-2">Tapizado Completo</h3>
+                    <p class="text-sm text-gray-400 mb-4 flex-grow">Casco sencillo con tapizado profesional</p>
+                    <div class="flex items-center justify-between">
+                        <span class="price-badge">$40.000</span>
+                        <span class="delivery-badge">1 día</span>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in-up" style="animation-delay: 0.1s;">
+                    <div class="icon-wrapper">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"></path></svg>
+                    </div>
+                    <h3 class="text-white mb-2">Tapizado Certificado</h3>
+                    <p class="text-sm text-gray-400 mb-4 flex-grow">Casco certificado con acabado premium</p>
+                    <div class="flex items-center justify-between">
+                        <span class="price-badge">$60.000</span>
+                        <span class="delivery-badge">1 día</span>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="icon-wrapper">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2c5.33 4.55 8 6.75 8 11 0 4.08-3.58 7-8 7s-8-2.92-8-7c0-4.25 2.67-6.45 8-11zm0 18c3.35 0 6-1.57 6-4.5.97-.89 2-2.45 2-4.5 0-4-2.46-6.36-8-10.91-5.54 4.55-8 6.91-8 10.91 0 2.05 1.03 3.61 2 4.5 0 2.93 2.65 4.5 6 4.5z"></path></svg>
+                    </div>
+                    <h3 class="text-white mb-2">Tapizado Original</h3>
+                    <p class="text-sm text-gray-400 mb-4 flex-grow">Acabado tipo original personalizado</p>
+                    <div class="flex items-center justify-between">
+                        <span class="price-badge">$90.000</span>
+                        <span class="delivery-badge">2 días</span>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in-up" style="animation-delay: 0.3s;">
+                    <div class="icon-wrapper">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+                    </div>
+                    <h3 class="text-white mb-2">Cambio Cachetes</h3>
+                    <p class="text-sm text-gray-400 mb-4 flex-grow">Par de cachetes sencillo</p>
+                    <div class="flex items-center justify-between">
+                        <span class="price-badge">$20.000</span>
+                        <span class="delivery-badge">Inmediato</span>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="icon-wrapper">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"></path></svg>
+                    </div>
+                    <h3 class="text-white mb-2">Cachetes Original</h3>
+                    <p class="text-sm text-gray-400 mb-4 flex-grow">Par de cachetes tipo original</p>
+                    <div class="flex items-center justify-between">
+                        <span class="price-badge">$35.000</span>
+                        <span class="delivery-badge">Inmediato</span>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in-up" style="animation-delay: 0.5s;">
+                    <div class="icon-wrapper">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-0.9-2-2-2zM1 12c0 2.21 1.79 4 4 4s4-1.79 4-4-1.79-4-4-4-4 1.79-4 4zm6-8c0 1.1 0.9 2 2 2s2-0.9 2-2-0.9-2-2-2-2 0.9-2 2zm9 4c-1.1 0-1.99 0.9-1.99 2s0.89 2 1.99 2 2-0.9 2-2-0.9-2-2-2zm4 8c0 2.21 1.79 4 4 4s4-1.79 4-4-1.79-4-4-4-4 1.79-4 4zm4-14c-1.1 0-2 0.9-2 2s0.9 2 2 2 2-0.9 2-2-0.9-2-2-2z"></path></svg>
+                    </div>
+                    <h3 class="text-white mb-2">Ajuste Talla</h3>
+                    <p class="text-sm text-gray-400 mb-4 flex-grow">Ajuste y alineación de talla</p>
+                    <div class="flex items-center justify-between">
+                        <span class="price-badge">$25.000</span>
+                        <span class="delivery-badge">1 día</span>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in-up" style="animation-delay: 0.6s;">
+                    <div class="icon-wrapper">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2c5.33 4.55 8 6.75 8 11 0 4.08-3.58 7-8 7s-8-2.92-8-7c0-4.25 2.67-6.45 8-11z"></path></svg>
+                    </div>
+                    <h3 class="text-white mb-2">Ajuste Sencillo</h3>
+                    <p class="text-sm text-gray-400 mb-4 flex-grow">Casco sencillo con ajuste básico</p>
+                    <div class="flex items-center justify-between">
+                        <span class="price-badge">$15.000</span>
+                        <span class="delivery-badge">1 día</span>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in-up" style="animation-delay: 0.7s;">
+                    <div class="icon-wrapper">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 5.5c0-.83-.67-1.5-1.5-1.5H9c-.83 0-1.5.67-1.5 1.5v12c0 .83.67 1.5 1.5 1.5h6c.83 0 1.5-.67 1.5-1.5v-12zM9 6h6v11H9V6z"></path></svg>
+                    </div>
+                    <h3 class="text-white mb-2">Lavado de Casco</h3>
+                    <p class="text-sm text-gray-400 mb-4 flex-grow">Limpieza profesional profunda</p>
+                    <div class="flex items-center justify-between">
+                        <span class="price-badge">$20.000</span>
+                        <span class="delivery-badge">1 día</span>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in-up" style="animation-delay: 0.8s;">
+                    <div class="icon-wrapper">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+                    </div>
+                    <h3 class="text-white mb-2">Cambio Broche</h3>
+                    <p class="text-sm text-gray-400 mb-4 flex-grow">Broche y correas seguridad</p>
+                    <div class="flex items-center justify-between">
+                        <span class="price-badge">$25.000</span>
+                        <span class="delivery-badge">Inmediato</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section id="productos">
-        <h2 class="section-title">Nuestros Productos</h2>
-        <p class="section-subtitle">Cascos de alta calidad para tu seguridad y estilo</p>
+    <div class="section-divider"></div>
 
-        <div class="products-grid">
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=300&fit=crop" alt="Casco Sport" class="product-image">
-                <div class="product-content">
-                    <h3 class="product-name">Cascos Sport</h3>
-                    <p class="product-price">$120.000 - $280.000</p>
-                    <p class="product-description">Cascos deportivos de alto rendimiento con diseño aerodinámico y máxima protección para tus aventuras en moto.</p>
-                    <a href="https://wa.link/kvw8rr" class="btn-primary product-button">Consultar</a>
-                </div>
+    <!-- Pintura -->
+    <section class="py-20 px-4 bg-navy relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-white mb-4">Servicios de Pintura</h2>
+                <p class="text-gray-400">Acabados profesionales y personalizados</p>
             </div>
 
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=400&h=300&fit=crop" alt="Casco Clásico" class="product-image">
-                <div class="product-content">
-                    <h3 class="product-name">Cascos Clásicos</h3>
-                    <p class="product-price">$90.000 - $180.000</p>
-                    <p class="product-description">Cascos con estilo retro y clásico. Perfectos para cruiser y street bikes con un toque vintage único.</p>
-                    <a href="https://wa.link/kvw8rr" class="btn-primary product-button">Consultar</a>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="service-card fade-in-left">
+                    <div class="icon-wrapper">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83zM3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z"></path></svg>
+                    </div>
+                    <h3 class="text-white mb-3">Pintura Sencilla</h3>
+                    <p class="text-sm text-gray-400 mb-6">Acabado uniforme de color sólido con excelente presentación</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-coral border-opacity-20">
+                        <span class="price-badge">$50.000</span>
+                        <span class="delivery-badge">4 días</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1571607388263-1044f9ea01dd?w=400&h=300&fit=crop" alt="Accesorios" class="product-image">
-                <div class="product-content">
-                    <h3 class="product-name">Accesorios</h3>
-                    <p class="product-price">$15.000 - $85.000</p>
-                    <p class="product-description">Accesorios premium para personalizar tu casco: viseras, protecciones, pegatinas y mucho más.</p>
-                    <a href="https://wa.link/kvw8rr" class="btn-primary product-button">Consultar</a>
+                <div class="service-card fade-in-right">
+                    <div class="icon-wrapper">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+                    </div>
+                    <h3 class="text-white mb-3">Pintura Personalizada</h3>
+                    <p class="text-sm text-gray-400 mb-6">Diseños únicos, gráficos y acabados premium personalizados</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-coral border-opacity-20">
+                        <span class="price-badge">$100K - $150K</span>
+                        <span class="delivery-badge">5 días</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="servicios">
-        <h2 class="section-title">Nuestros Servicios</h2>
-        <p class="section-subtitle">Soluciones completas para tu casco</p>
+    <div class="section-divider"></div>
 
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M14 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10"></path>
-                        <path d="M15 2v4"></path>
-                        <path d="M9 14l2 2 4-4"></path>
+    <!-- Cambiatón Promo -->
+    <section class="py-20 px-4 relative promo-banner">
+        <div class="absolute inset-0 z-0"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="text-white mb-4">CAMBIATÓN ESPECIAL</h2>
+                <p class="text-lg text-white opacity-90">¡Cambia tu casco viejo por uno nuevo a precios increíbles!</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass rounded-lg p-6 text-center fade-in-up">
+                    <h3 class="text-white text-lg font-bold mb-2">Casco Nuevo</h3>
+                    <p class="text-2xl font-bold text-navy mb-2">Desde $100.000</p>
+                    <p class="text-sm text-white opacity-90">Con tu casco viejo</p>
+                    <p class="text-xs text-white opacity-75 mt-2">Entrega Inmediata</p>
+                </div>
+
+                <div class="glass rounded-lg p-6 text-center fade-in-up" style="animation-delay: 0.1s;">
+                    <h3 class="text-white text-lg font-bold mb-2">Segunda Mano</h3>
+                    <p class="text-2xl font-bold text-navy mb-2">Desde $75.000</p>
+                    <p class="text-sm text-white opacity-90">Como nuevos</p>
+                    <p class="text-xs text-white opacity-75 mt-2">Garantizados</p>
+                </div>
+
+                <div class="glass rounded-lg p-6 text-center fade-in-up" style="animation-delay: 0.2s;">
+                    <h3 class="text-white text-lg font-bold mb-2">Cross Económico</h3>
+                    <p class="text-2xl font-bold text-navy mb-2">$45.000</p>
+                    <p class="text-sm text-white opacity-90">Resistente y cómodo</p>
+                    <p class="text-xs text-white opacity-75 mt-2">Stock disponible</p>
+                </div>
+
+                <div class="glass rounded-lg p-6 text-center fade-in-up" style="animation-delay: 0.3s;">
+                    <h3 class="text-white text-lg font-bold mb-2">Gafas Cross</h3>
+                    <p class="text-2xl font-bold text-navy mb-2">$18.000</p>
+                    <p class="text-sm text-white opacity-90">Sencillas</p>
+                    <p class="text-xs text-white opacity-75 mt-2">Protección total</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="https://wa.me/573003199232" target="_blank" class="btn btn-primary text-lg">Aprovechar Cambiatón</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Accesorios y Visores -->
+    <section id="accesorios" class="py-20 px-4 bg-navy relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-white mb-4">Accesorios y Visores</h2>
+                <p class="text-gray-400">Amplio catálogo de piezas de reemplazo y mejora</p>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="visor-table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Especificaciones</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="fade-in-up">
+                            <td class="font-semibold">Visor ICH 501</td>
+                            <td>Transparente / Humo</td>
+                            <td><span class="price-badge">$18.000</span></td>
+                        </tr>
+                        <tr class="fade-in-up" style="animation-delay: 0.05s;">
+                            <td class="font-semibold">Visor ICH 3110</td>
+                            <td>Transparente / Humo</td>
+                            <td><span class="price-badge">$18.000</span></td>
+                        </tr>
+                        <tr class="fade-in-up" style="animation-delay: 0.1s;">
+                            <td class="font-semibold">Visor ICH 3120</td>
+                            <td>Transparente | Color +$13K</td>
+                            <td><span class="price-badge">$25.000</span></td>
+                        </tr>
+                        <tr class="fade-in-up" style="animation-delay: 0.15s;">
+                            <td class="font-semibold">Visor ICH 3300</td>
+                            <td>Transparente</td>
+                            <td><span class="price-badge">$25.000</span></td>
+                        </tr>
+                        <tr class="fade-in-up" style="animation-delay: 0.2s;">
+                            <td class="font-semibold">Visor ICH 520</td>
+                            <td>Premium</td>
+                            <td><span class="price-badge">$60.000</span></td>
+                        </tr>
+                        <tr class="fade-in-up" style="animation-delay: 0.25s;">
+                            <td class="font-semibold">Visor Tech T10</td>
+                            <td>Tecnología avanzada</td>
+                            <td><span class="price-badge">$25.000</span></td>
+                        </tr>
+                        <tr class="fade-in-up" style="animation-delay: 0.3s;">
+                            <td class="font-semibold">Visor Shaft 821-581</td>
+                            <td>Transparente / Humo</td>
+                            <td><span class="price-badge">$50.000</span></td>
+                        </tr>
+                        <tr class="fade-in-up" style="animation-delay: 0.35s;">
+                            <td class="font-semibold">Visor HRO 3400</td>
+                            <td>Resistente</td>
+                            <td><span class="price-badge">$65.000</span></td>
+                        </tr>
+                        <tr class="fade-in-up" style="animation-delay: 0.4s;">
+                            <td class="font-semibold">Visor HRO 518</td>
+                            <td>Premium</td>
+                            <td><span class="price-badge">$65.000</span></td>
+                        </tr>
+                        <tr class="fade-in-up" style="animation-delay: 0.45s;">
+                            <td class="font-semibold">Visor Xecuro 918</td>
+                            <td>Estándar</td>
+                            <td><span class="price-badge">$22.000</span></td>
+                        </tr>
+                        <tr class="fade-in-up" style="animation-delay: 0.5s;">
+                            <td class="font-semibold">Visor Adaptación</td>
+                            <td>Universal</td>
+                            <td><span class="price-badge">$35.000</span></td>
+                        </tr>
+                        <tr class="fade-in-up" style="animation-delay: 0.55s;">
+                            <td class="font-semibold">Tapones ICH 501</td>
+                            <td>Par</td>
+                            <td><span class="price-badge">$10.000</span></td>
+                        </tr>
+                        <tr class="fade-in-up" style="animation-delay: 0.6s;">
+                            <td class="font-semibold">Tornillos ICH 3110</td>
+                            <td>Par</td>
+                            <td><span class="price-badge">$10.000</span></td>
+                        </tr>
+                        <tr class="fade-in-up" style="animation-delay: 0.65s;">
+                            <td class="font-semibold">Tapones ICH 102</td>
+                            <td>Par</td>
+                            <td><span class="price-badge">$20.000</span></td>
+                        </tr>
+                        <tr class="fade-in-up" style="animation-delay: 0.7s;">
+                            <td class="font-semibold">Sistemas Sport Tech T10</td>
+                            <td>Par</td>
+                            <td><span class="price-badge">$20.000</span></td>
+                        </tr>
+                        <tr class="fade-in-up" style="animation-delay: 0.75s;">
+                            <td class="font-semibold">Sistemas ICH 3120</td>
+                            <td>Par</td>
+                            <td><span class="price-badge">$20.000</span></td>
+                        </tr>
+                        <tr class="fade-in-up" style="animation-delay: 0.8s;">
+                            <td class="font-semibold">Tornillo Lujo</td>
+                            <td>Par</td>
+                            <td><span class="price-badge">$10.000</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Tapizado Sillas de Moto -->
+    <section id="sillas" class="py-20 px-4 bg-navy relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-white mb-4">Tapizado de Sillas de Moto</h2>
+                <p class="text-gray-400">Comodidad y estilo para tu asiento</p>
+            </div>
+
+            <div class="sillas-grid">
+                <div class="service-card fade-in-up">
+                    <h3 class="text-white mb-4">Silla Boxer</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Comodidad estándar</p>
+                    <span class="price-badge">$45.000</span>
+                </div>
+                <div class="service-card fade-in-up" style="animation-delay: 0.05s;">
+                    <h3 class="text-white mb-4">Silla AX4</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Ajuste perfecto</p>
+                    <span class="price-badge">$45.000</span>
+                </div>
+                <div class="service-card fade-in-up" style="animation-delay: 0.1s;">
+                    <h3 class="text-white mb-4">Silla Pulsar 200</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Premium comfort</p>
+                    <span class="price-badge">$60.000</span>
+                </div>
+                <div class="service-card fade-in-up" style="animation-delay: 0.15s;">
+                    <h3 class="text-white mb-4">Silla NKD</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Resistente</p>
+                    <span class="price-badge">$45.000</span>
+                </div>
+                <div class="service-card fade-in-up" style="animation-delay: 0.2s;">
+                    <h3 class="text-white mb-4">Silla Criptón</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Sencilla económica</p>
+                    <span class="price-badge">$45.000</span>
+                </div>
+                <div class="service-card fade-in-up" style="animation-delay: 0.25s;">
+                    <h3 class="text-white mb-4">Silla BWS 2T</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Compacta</p>
+                    <span class="price-badge">$50.000</span>
+                </div>
+                <div class="service-card fade-in-up" style="animation-delay: 0.3s;">
+                    <h3 class="text-white mb-4">Silla BWS 4T</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Premium plus</p>
+                    <span class="price-badge">$65.000</span>
+                </div>
+                <div class="service-card fade-in-up" style="animation-delay: 0.35s;">
+                    <h3 class="text-white mb-4">Silla XTZ</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Máxima comodidad</p>
+                    <span class="price-badge">$70.000</span>
+                </div>
+                <div class="service-card fade-in-up" style="animation-delay: 0.4s;">
+                    <h3 class="text-white mb-4">Silla Eco Deluxe</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Económica</p>
+                    <span class="price-badge">$45.000</span>
+                </div>
+                <div class="service-card fade-in-up" style="animation-delay: 0.45s;">
+                    <h3 class="text-white mb-4">Silla Platino</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Lujo</p>
+                    <span class="price-badge">$45.000</span>
+                </div>
+                <div class="service-card fade-in-up" style="animation-delay: 0.5s;">
+                    <h3 class="text-white mb-4">Silla Discover</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Estándar</p>
+                    <span class="price-badge">$45.000</span>
+                </div>
+                <div class="service-card fade-in-up" style="animation-delay: 0.55s;">
+                    <h3 class="text-white mb-4">Relleno Adicional</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Esponja extra</p>
+                    <span class="price-badge">$15.000</span>
+                </div>
+                <div class="service-card fade-in-up" style="animation-delay: 0.6s;">
+                    <h3 class="text-white mb-4">Manta Personalizada</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Diseño único</p>
+                    <span class="price-badge">$70.000</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Garantía y Pagos -->
+    <section class="py-20 px-4 bg-navy relative">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-white mb-4">Garantía y Formas de Pago</h2>
+                <p class="text-gray-400">Confianza en cada servicio</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass rounded-lg p-8 text-center fade-in-left">
+                    <svg class="w-12 h-12 mx-auto text-coral mb-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
                     </svg>
+                    <h3 class="text-white font-bold mb-2">3 Meses Garantía</h3>
+                    <p class="text-sm text-gray-400">En todos nuestros servicios de tapizado</p>
                 </div>
-                <h3 class="service-title">Tapizado de Cascos</h3>
-                <p class="service-description">Renovamos el interior de tu casco con materiales premium, garantizando comodidad y durabilidad máxima.</p>
-            </div>
 
-            <div class="service-card">
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
-                        <path d="M21 3v5h-5"></path>
-                        <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
-                        <path d="M3 21v-5h5"></path>
+                <div class="glass rounded-lg p-8 text-center fade-in-up">
+                    <svg class="w-12 h-12 mx-auto text-coral mb-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"></path>
                     </svg>
+                    <h3 class="text-white font-bold mb-2">Entrega Rápida</h3>
+                    <p class="text-sm text-gray-400">Según el tipo de servicio contratado</p>
                 </div>
-                <h3 class="service-title">Programa de Intercambio</h3>
-                <p class="service-description">Trae tu casco viejo y llévate uno nuevo con el mejor descuento del mercado en Barranquilla.</p>
-            </div>
 
-            <div class="service-card">
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <div class="glass rounded-lg p-8 text-center fade-in-right">
+                    <svg class="w-12 h-12 mx-auto text-coral mb-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"></path>
                     </svg>
+                    <h3 class="text-white font-bold mb-2">Formas de Pago</h3>
+                    <p class="text-sm text-gray-400">Efectivo y Transferencia disponibles</p>
                 </div>
-                <h3 class="service-title">Venta de Cascos Nuevos</h3>
-                <p class="service-description">Cascos originales y certificados de las mejores marcas con garantía y el mejor precio.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Testimonios -->
+    <section class="py-20 px-4 bg-navy relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-white mb-4">Lo Que Dicen Nuestros Clientes</h2>
+                <p class="text-gray-400">Satisfacción garantizada en cada proyecto</p>
             </div>
 
-            <div class="service-card">
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 1 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="testimonial-card fade-in-up">
+                    <div class="star-rating">★★★★★</div>
+                    <p class="text-gray-300 mb-4 text-sm italic">"Excelente trabajo, mi casco quedó como nuevo. Muy profesionales y puntuales."</p>
+                    <p class="text-coral font-bold">Juan Pérez</p>
+                    <p class="text-xs text-gray-400">Barranquilla</p>
+                </div>
+
+                <div class="testimonial-card fade-in-up" style="animation-delay: 0.1s;">
+                    <div class="star-rating">★★★★★</div>
+                    <p class="text-gray-300 mb-4 text-sm italic">"Precios justos, trabajo de calidad. Definitivamente vuelvo para más servicios."</p>
+                    <p class="text-coral font-bold">María González</p>
+                    <p class="text-xs text-gray-400">Soledad</p>
+                </div>
+
+                <div class="testimonial-card fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="star-rating">★★★★★</div>
+                    <p class="text-gray-300 mb-4 text-sm italic">"Recomendado 100%. El servicio al cliente es de verdad excelente."</p>
+                    <p class="text-coral font-bold">Carlos Ruiz</p>
+                    <p class="text-xs text-gray-400">Puerto Colombia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Ubicación y Contacto -->
+    <section id="ubicacion" class="py-20 px-4 bg-navy relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-white mb-4">Ubicación y Contacto</h2>
+                <p class="text-gray-400">Visítanos en Barranquilla</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                <div class="glass rounded-lg p-6 fade-in-left">
+                    <svg class="w-8 h-8 text-coral mb-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"></path>
                     </svg>
+                    <h3 class="text-white font-bold mb-2">Dirección</h3>
+                    <p class="text-gray-300 text-sm">Calle 44 #21b-15<br>San José, Barranquilla<br>Colombia</p>
                 </div>
-                <h3 class="service-title">Accesorios y Repuestos</h3>
-                <p class="service-description">Repuestos originales y accesorios de calidad para reparación y personalización de tu casco.</p>
+
+                <div class="glass rounded-lg p-6 fade-in-up">
+                    <svg class="w-8 h-8 text-coral mb-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"></path>
+                    </svg>
+                    <h3 class="text-white font-bold mb-2">Horario</h3>
+                    <p class="text-gray-300 text-sm">Lunes a Sábado<br>8:30 AM - 7:00 PM<br>Domingos: Cerrado</p>
+                </div>
+
+                <div class="glass rounded-lg p-6 fade-in-right">
+                    <svg class="w-8 h-8 text-coral mb-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path>
+                    </svg>
+                    <h3 class="text-white font-bold mb-2">WhatsApp</h3>
+                    <p class="text-gray-300 text-sm">Negocio: 300 319 9232<br>Personal: 301 637 6867</p>
+                </div>
+            </div>
+
+            <div class="map-container fade-in-up">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3926.154819748568!2d-74.78598!3d10.962655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef42a98a8e8e8e8%3A0x8e8e8e8e8e8e8e8e!2sCalle%2044%20%2321b-15%2C%20San%20Jos%C3%A9%2C%20Barranquilla!5e0!3m2!1ses!2sco!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>
 
-    <!-- Promo Banner -->
-    <section style="padding: 3rem 2rem;">
-        <div class="promo-banner">
-            <div class="promo-content">
-                <h2 class="promo-title">🔥 PROMO ESPECIAL</h2>
-                <p class="promo-subtitle">Trae tu casco viejo y llévate uno NUEVO desde $100.000</p>
-                <p class="promo-subtitle" style="font-size: 0.95rem; color: rgba(255,255,255,0.85);">Oferta válida hasta agotar stock</p>
-                <a href="https://wa.link/kvw8rr" class="btn-primary" style="margin-top: 1.5rem; background: white; color: #FF6B35;">Consultar Disponibilidad</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="galeria">
-        <h2 class="section-title">Nuestros Trabajos</h2>
-        <p class="section-subtitle">Galería de transformaciones y customizaciones</p>
-
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=300&h=300&fit=crop" alt="Trabajo 1">
-                <div class="gallery-overlay">
-                    <div class="gallery-text">Antes → Después</div>
-                </div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=300&h=300&fit=crop" alt="Trabajo 2">
-                <div class="gallery-overlay">
-                    <div class="gallery-text">Antes → Después</div>
-                </div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1558981359-219d6364c9c8?w=300&h=300&fit=crop" alt="Trabajo 3">
-                <div class="gallery-overlay">
-                    <div class="gallery-text">Antes → Después</div>
-                </div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1558981285-6f0c94958bb6?w=300&h=300&fit=crop" alt="Trabajo 4">
-                <div class="gallery-overlay">
-                    <div class="gallery-text">Antes → Después</div>
-                </div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1547549082-6bc09f2049ae?w=300&h=300&fit=crop" alt="Trabajo 5">
-                <div class="gallery-overlay">
-                    <div class="gallery-text">Antes → Después</div>
-                </div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1599819811279-d5ad9cccb653?w=300&h=300&fit=crop" alt="Trabajo 6">
-                <div class="gallery-overlay">
-                    <div class="gallery-text">Antes → Después</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="gallery-button">
-            <a href="https://www.instagram.com/tapicascosbq" target="_blank" class="btn-secondary">
-                Ver más en Instagram →
-            </a>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonios">
-        <h2 class="section-title">Testimonios</h2>
-        <p class="section-subtitle">Lo que dicen nuestros clientes satisfechos</p>
-
-        <div class="testimonials-container">
-            <div class="testimonial-card">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"Excelente trabajo, mi casco quedó como nuevo. La atención al cliente es de primera y los precios son muy justos. Definitivamente vuelvo a confiar en Tapicascos."</p>
-                <p class="testimonial-author">Carlos M.</p>
-                <p class="testimonial-location">Barranquilla</p>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"Llevé mi casco viejo y me dieron un buen descuento en uno nuevo. El programa de intercambio es genial y muy conveniente. Recomendado 100%."</p>
-                <p class="testimonial-author">Laura P.</p>
-                <p class="testimonial-location">Soledad</p>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"La tapicería es de muy buena calidad y dura bastante. Llevo meses con el casco y sigue como el primer día. Gran trabajo y excelente servicio."</p>
-                <p class="testimonial-author">Juan R.</p>
-                <p class="testimonial-location">Barranquilla</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Location Section -->
-    <section id="ubicacion">
-        <h2 class="section-title">Encuéntranos</h2>
-        <p class="section-subtitle">Visítanos en nuestra tienda en Barranquilla</p>
-
-        <div class="location-content">
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3926.869245088346!2d-74.78234!3d10.98779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef42e8b6d8b8b8b%3A0x8b8b8b8b8b8b8b8b!2sCalle%2044%20%2321b%2015%2C%20Barranquilla%20080003!5e0!3m2!1ses!2sco!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-
-            <div class="contact-info">
-                <div class="info-card">
-                    <div class="info-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                            <circle cx="12" cy="10" r="3"></circle>
-                        </svg>
-                    </div>
-                    <div class="info-text">
-                        <h3>Dirección</h3>
-                        <p>Calle 44 #21b 15</p>
-                        <p>Barranquilla 080003, Colombia</p>
-                    </div>
-                </div>
-
-                <div class="info-card">
-                    <div class="info-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                        </svg>
-                    </div>
-                    <div class="info-text">
-                        <h3>Horario</h3>
-                        <p>Lunes a Sábado: 8:00 AM - 6:00 PM</p>
-                        <p>Domingo: Cerrado</p>
-                    </div>
-                </div>
-
-                <div class="info-card">
-                    <div class="info-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                        </svg>
-                    </div>
-                    <div class="info-text">
-                        <h3>Síguenos en Redes</h3>
-                        <div class="social-links">
-                            <a href="https://www.instagram.com/tapicascosbq" target="_blank" class="social-icon" title="Instagram">
-                                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.057-1.645.069-4.849.069-3.204 0-3.584-.012-4.849-.069-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/>
-                                </svg>
-                            </a>
-                            <a href="https://www.facebook.com/Tapizadosbarranquilla" target="_blank" class="social-icon" title="Facebook">
-                                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                                </svg>
-                            </a>
-                            <a href="https://www.tiktok.com/@tapicascosbq" target="_blank" class="social-icon" title="TikTok">
-                                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.1 1.82 2.9 2.9 0 0 1 2.31-4.64 2.88 2.88 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-.01-.01z"/>
-                                </svg>
-                            </a>
-                            <a href="https://wa.link/kvw8rr" target="_blank" class="social-icon" title="WhatsApp">
-                                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="section-divider"></div>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">TAPICASCOS BARRANQUILLA</div>
-            <p class="footer-text">Transformamos tus cascos con calidad, estilo y profesionalismo</p>
-
-            <div class="footer-socials">
-                <a href="https://www.instagram.com/tapicascosbq" target="_blank" class="social-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.057-1.645.069-4.849.069-3.204 0-3.584-.012-4.849-.069-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/>
-                    </svg>
-                </a>
-                <a href="https://www.facebook.com/Tapizadosbarranquilla" target="_blank" class="social-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                    </svg>
-                </a>
-                <a href="https://www.tiktok.com/@tapicascosbq" target="_blank" class="social-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.1 1.82 2.9 2.9 0 0 1 2.31-4.64 2.88 2.88 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-.01-.01z"/>
-                    </svg>
-                </a>
+    <footer class="py-12 px-4 bg-dark-navy border-t border-coral border-opacity-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-white font-bold mb-4">Tapicascos</h3>
+                    <p class="text-gray-400 text-sm">Personalización premium de cascos en Barranquilla, Colombia.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-3 text-sm">Servicios</h4>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li><a href="#servicios" class="hover:text-coral transition-colors">Tapizado Cascos</a></li>
+                        <li><a href="#servicios" class="hover:text-coral transition-colors">Pintura</a></li>
+                        <li><a href="#accesorios" class="hover:text-coral transition-colors">Visores</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-3 text-sm">Síguenos</h4>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li><a href="https://instagram.com/tapicascosbq" target="_blank" class="hover:text-coral transition-colors">Instagram @tapicascosbq</a></li>
+                        <li><a href="https://facebook.com" target="_blank" class="hover:text-coral transition-colors">Facebook</a></li>
+                        <li><a href="https://tiktok.com" target="_blank" class="hover:text-coral transition-colors">TikTok</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-3 text-sm">Contacto</h4>
+                    <p class="text-gray-400 text-sm">WhatsApp: 300 319 9232</p>
+                    <p class="text-gray-400 text-sm">Barranquilla, Colombia</p>
+                </div>
             </div>
 
-            <div class="footer-copy">
-                &copy; 2026 Tapicascos Barranquilla. Todos los derechos reservados.<br>
-                <small>Calle 44 #21b 15, Barranquilla 080003, Colombia</small>
+            <div class="border-t border-coral border-opacity-10 pt-8">
+                <p class="text-center text-gray-400 text-sm">&copy; 2024 Tapicascos Barranquilla. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.link/kvw8rr" target="_blank" class="floating-btn whatsapp-btn" title="Contáctanos por WhatsApp">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/573003199232" target="_blank" class="whatsapp-float" title="Chat en WhatsApp">
+        <svg fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004c-1.425 0-2.835.356-4.07 1.031l-.291.16-.303-.07c-1.004-.237-1.932-.678-2.712-1.304l-.265-.219-.272.047c-.726.131-1.405.392-2.015.769l-.246.153-.26-.086C1.884 4.602 1.089 2.586 1.089 2.586S2.702 6.783 4.953 8.384l.25.165.264-.056c1.063-.221 2.168-.211 3.24.03l.271.066.282-.157c1.15-.642 2.51-1.01 3.961-1.01h.004c2.096 0 4.026.931 5.362 2.414l.234.252.31-.15c1.18-.567 2.224-1.384 3.023-2.391l.192-.271-.211.232c-.79 1.05-1.87 1.883-3.1 2.404l-.267.125.221.255c1.185 1.362 1.928 3.138 1.928 5.096 0 4.335-3.582 7.865-7.99 7.865-1.416 0-2.768-.328-3.953-.948l-.288-.142-.299.048c-1.22.186-2.48.186-3.702 0l-.299-.048-.288.142c-1.185.62-2.537.948-3.953.948-4.408 0-7.99-3.53-7.99-7.865 0-1.958.743-3.734 1.928-5.096l.221-.255-.267-.125c-1.23-.521-2.31-1.354-3.1-2.404l-.211-.232.192.271c.799 1.007 1.843 1.824 3.023 2.391l.31.15.234-.252c1.336-1.483 3.266-2.414 5.362-2.414z"></path>
         </svg>
     </a>
 
-    <!-- Voice Agent Button -->
-    <button class="floating-btn voice-btn" id="voiceBtn" title="Abrir asistente de voz">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
-            <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"></path>
-            <path d="M17 16.91c-1.48 1.46-3.51 2.36-5.7 2.36-2.19 0-4.22-.9-5.7-2.36m8.02-13.9h-2.02m4.04 0h-2.02"></path>
-            <path d="M19 21H5v-2h14v2z"></path>
-        </svg>
-    </button>
-
-    <!-- Voice Widget -->
-    <div class="voice-widget" id="voiceWidget">
-        <div class="widget-header">
-            <h3>Asistente Tapicascos</h3>
-            <button class="widget-close" onclick="closeVoiceWidget()">×</button>
-        </div>
-        <div class="widget-messages" id="widgetMessages">
-            <div class="message bot">Hola, bienvenido a Tapicascos Barranquilla. ¿Cómo puedo ayudarte hoy?</div>
-        </div>
-        <div class="widget-input">
-            <input type="text" id="widgetInput" placeholder="Escribe tu mensaje..." onkeypress="handleWidgetInput(event)">
-            <button onclick="sendWidgetMessage()">→</button>
+    <!-- Chat Widget -->
+    <div id="chat-widget" style="display: none;">
+        <div id="chat-container">
+            <div id="chat-messages" style="flex: 1; overflow-y: auto; margin-bottom: 1rem;"></div>
+            <div id="quick-replies" style="margin-bottom: 0.75rem;"></div>
+            <input type="text" id="chat-input" placeholder="Escribe tu mensaje...">
         </div>
     </div>
 
+    <div id="chat-bubble">
+        <svg fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12h-8v2h8v-2zm0-3h-8v2h8V11zm0-3H4v2h14V8z"></path>
+        </svg>
+    </div>
+
     <script>
-        // Initialize GSAP
         gsap.registerPlugin(ScrollTrigger);
 
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        const navCTA = document.getElementById('navCTA');
+        const services = {
+            'tapizado': {
+                title: 'Servicios de Tapizado',
+                items: [
+                    { name: 'Tapizado completo casco sencillo', price: '$40.000', time: '1 día' },
+                    { name: 'Tapizado completo casco certificado', price: '$60.000', time: '1 día' },
+                    { name: 'Tapizado completo tipo original', price: '$90.000', time: '2 días' }
+                ]
+            },
+            'cachetes': {
+                title: 'Cambio de Cachetes',
+                items: [
+                    { name: 'Cambio par cachetes sencillo', price: '$20.000' },
+                    { name: 'Cambio par cachetes original', price: '$35.000' }
+                ]
+            },
+            'visores': {
+                title: 'Visores Disponibles',
+                items: [
+                    { name: 'Visor ICH 501', price: '$18.000' },
+                    { name: 'Visor ICH 3120', price: '$25.000' },
+                    { name: 'Visor Shaft 821-581', price: '$50.000' },
+                    { name: 'Visor HRO 3400', price: '$65.000' }
+                ]
+            },
+            'sillas': {
+                title: 'Tapizado de Sillas',
+                items: [
+                    { name: 'Silla Boxer', price: '$45.000' },
+                    { name: 'Silla Pulsar 200', price: '$60.000' },
+                    { name: 'Silla XTZ', price: '$70.000' }
+                ]
+            }
+        };
+
+        const quickReplies = [
+            { text: 'Precios tapizado', key: 'tapizado' },
+            { text: 'Visores', key: 'visores' },
+            { text: 'Sillas de moto', key: 'sillas' },
+            { text: 'Ubicación', key: 'location' },
+            { text: 'Cambiatón', key: 'promos' }
+        ];
+
+        let chatOpen = false;
+        const chatBubble = document.getElementById('chat-bubble');
+        const chatWidget = document.getElementById('chat-widget');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const quickRepliesDiv = document.getElementById('quick-replies');
+
+        chatBubble.addEventListener('click', () => {
+            chatOpen = !chatOpen;
+            chatWidget.style.display = chatOpen ? 'flex' : 'none';
+            if (chatOpen && chatMessages.children.length === 0) {
+                addBotMessage("¡Ey, qué más! Bienvenido a Tapicascos Barranquilla. ¿En qué te puedo ayudar, parcero?");
+                renderQuickReplies();
+            }
+        });
+
+        function addBotMessage(text) {
+            const msg = document.createElement('div');
+            msg.className = 'chat-message bot';
+            msg.innerHTML = `<div class="chat-message-content">${text}</div>`;
+            chatMessages.appendChild(msg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function addUserMessage(text) {
+            const msg = document.createElement('div');
+            msg.className = 'chat-message user';
+            msg.innerHTML = `<div class="chat-message-content">${text}</div>`;
+            chatMessages.appendChild(msg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function renderQuickReplies() {
+            quickRepliesDiv.innerHTML = '';
+            quickReplies.forEach(reply => {
+                const btn = document.createElement('button');
+                btn.className = 'quick-reply-btn';
+                btn.textContent = reply.text;
+                btn.onclick = () => handleQuickReply(reply);
+                quickRepliesDiv.appendChild(btn);
+            });
+        }
+
+        function handleQuickReply(reply) {
+            addUserMessage(reply.text);
+            chatInput.value = '';
+
+            if (reply.key === 'tapizado' || reply.key === 'visores' || reply.key === 'sillas') {
+                const data = services[reply.key];
+                let response = `<strong>${data.title}:</strong><br>`;
+                data.items.forEach(item => {
+                    response += `• ${item.name}: ${item.price}${item.time ? ` (${item.time})` : ''}<br>`;
+                });
+                addBotMessage(response);
+            } else if (reply.key === 'location') {
+                addBotMessage("Calle 44 #21b-15, San José<br>Lunes a Sábado 8:30 AM - 7:00 PM<br>¿Te gustaría nuestro WhatsApp?");
+            } else if (reply.key === 'promos') {
+                addBotMessage("Cascos nuevos desde $100.000, segunda mano desde $75.000. ¡Llama al 300 319 9232!");
+            }
+
+            setTimeout(renderQuickReplies, 500);
+        }
+
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && chatInput.value.trim()) {
+                const userText = chatInput.value.trim();
+                addUserMessage(userText);
+                chatInput.value = '';
+
+                let response = "Para más información, contáctame por WhatsApp";
+
+                if (userText.toLowerCase().includes('precio') || userText.toLowerCase().includes('costo')) {
+                    response = "Tenemos servicios desde $15.000. ¿Qué tipo específicamente?";
+                } else if (userText.toLowerCase().includes('tapizado')) {
+                    response = "Tapizado: $40K-$90K según el tipo. ¿Quieres más detalles?";
+                } else if (userText.toLowerCase().includes('horario') || userText.toLowerCase().includes('abierto')) {
+                    response = "Abierto Lunes a Sábado 8:30 AM a 7:00 PM";
+                } else if (userText.toLowerCase().includes('ubicación') || userText.toLowerCase().includes('donde')) {
+                    response = "Calle 44 #21b-15, San José, Barranquilla";
+                } else if (userText.toLowerCase().includes('whatsapp') || userText.toLowerCase().includes('contacto')) {
+                    response = "WhatsApp: 300 319 9232 - ¡Contáctame!";
+                }
+
+                setTimeout(() => {
+                    addBotMessage(response);
+                    setTimeout(renderQuickReplies, 300);
+                }, 500);
+            }
+        });
+
+        setTimeout(() => {
+            gsap.utils.toArray(".fade-in-up").forEach((element) => {
+                gsap.to(element, {
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 95%',
+                        once: true,
+                    },
+                    duration: 0.8,
+                    opacity: 1,
+                    y: 0,
+                    ease: 'power2.out'
+                });
+
+                setTimeout(() => {
+                    gsap.set(element, { opacity: 1, y: 0 });
+                }, 3000);
+            });
+
+            gsap.utils.toArray(".fade-in-left").forEach((element) => {
+                gsap.to(element, {
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 95%',
+                        once: true,
+                    },
+                    duration: 0.8,
+                    opacity: 1,
+                    x: 0,
+                    ease: 'power2.out'
+                });
+
+                setTimeout(() => {
+                    gsap.set(element, { opacity: 1, x: 0 });
+                }, 3000);
+            });
+
+            gsap.utils.toArray(".fade-in-right").forEach((element) => {
+                gsap.to(element, {
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 95%',
+                        once: true,
+                    },
+                    duration: 0.8,
+                    opacity: 1,
+                    x: 0,
+                    ease: 'power2.out'
+                });
+
+                setTimeout(() => {
+                    gsap.set(element, { opacity: 1, x: 0 });
+                }, 3000);
+            });
+        }, 100);
 
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-                navCTA.style.display = 'inline-block';
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
             } else {
-                navbar.classList.remove('scrolled');
-                navCTA.style.display = 'none';
+                nav.classList.remove('scrolled');
             }
         });
 
-        // Hamburger menu
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Scroll animations with safety fallback
-        const sections = document.querySelectorAll('section');
-
-        sections.forEach((section, index) => {
-            if (index === 0) return; // Skip hero
-
-            gsap.from(section, {
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top 95%',
-                    toggleActions: 'play none none none',
-                    once: true
-                },
-                opacity: 0,
-                y: 40,
-                duration: 0.7
-            });
-        });
-
-        // Animate cards on scroll
-        document.querySelectorAll('.product-card, .service-card, .testimonial-card, .gallery-item').forEach((card, index) => {
-            gsap.from(card, {
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top 95%',
-                    once: true
-                },
-                opacity: 0,
-                y: 30,
-                duration: 0.5,
-                delay: index * 0.08
-            });
-        });
-
-        // Safety fallback: ensure all sections visible after 3 seconds
-        setTimeout(() => {
-            document.querySelectorAll('section').forEach(s => {
-                if (getComputedStyle(s).opacity < 0.1) {
-                    s.style.opacity = '1';
-                    s.style.transform = 'none';
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
-            document.querySelectorAll('.product-card, .service-card, .testimonial-card, .gallery-item').forEach(c => {
-                if (getComputedStyle(c).opacity < 0.1) {
-                    c.style.opacity = '1';
-                    c.style.transform = 'none';
-                }
-            });
-        }, 3000);
-
-        // Voice widget functions
-        const voiceBtn = document.getElementById('voiceBtn');
-        const voiceWidget = document.getElementById('voiceWidget');
-
-        voiceBtn.addEventListener('click', () => {
-            voiceWidget.classList.toggle('active');
-            if (voiceWidget.classList.contains('active')) {
-                document.getElementById('widgetInput').focus();
-            }
         });
-
-        function closeVoiceWidget() {
-            voiceWidget.classList.remove('active');
-        }
-
-        function sendWidgetMessage() {
-            const input = document.getElementById('widgetInput');
-            const message = input.value.trim();
-
-            if (!message) return;
-
-            const messagesDiv = document.getElementById('widgetMessages');
-
-            // Add user message
-            const userMsg = document.createElement('div');
-            userMsg.className = 'message user';
-            userMsg.textContent = message;
-            messagesDiv.appendChild(userMsg);
-
-            input.value = '';
-
-            // Simulate bot response
-            setTimeout(() => {
-                const botMsg = document.createElement('div');
-                botMsg.className = 'message bot';
-
-                const responses = [
-                    'Gracias por tu interés. Uno de nuestros especialistas se pondrá en contacto pronto.',
-                    'Excelente pregunta. ¿Necesitas más información? Contáctanos por WhatsApp.',
-                    'Claro, estamos aquí para ayudarte. ¿Hay algo específico en lo que podamos asistirte?',
-                    'Apreciamos tu mensaje. Para respuestas rápidas, usa nuestro WhatsApp.'
-                ];
-
-                botMsg.textContent = responses[Math.floor(Math.random() * responses.length)];
-                messagesDiv.appendChild(botMsg);
-                messagesDiv.scrollTop = messagesDiv.scrollHeight;
-            }, 500);
-
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        }
-
-        function handleWidgetInput(event) {
-            if (event.key === 'Enter') {
-                sendWidgetMessage();
-            }
-        }
     </script>
 </body>
 </html>
