@@ -62,6 +62,158 @@
         h2 { font-size: 2.5rem !important; }
         h3 { font-size: 1.75rem !important; }
 
+        /* ========== PREMIUM VISUAL EFFECTS ========== */
+
+        /* Animated gradient text */
+        .gradient-text-animated {
+            background: linear-gradient(270deg, #FF6B35, #FFD700, #FF6B35, #FF8C5A);
+            background-size: 600% 600%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+        }
+        .orb-1 { animation: orbFloat1 8s ease-in-out infinite; }
+        .orb-2 { animation: orbFloat2 12s ease-in-out infinite; }
+        .orb-3 { animation: orbFloat3 10s ease-in-out infinite; }
+        @keyframes orbFloat1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(40px, -50px) scale(1.15); }
+            66% { transform: translate(-30px, 30px) scale(0.9); }
+        }
+        @keyframes orbFloat2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-50px, 40px) scale(1.1); }
+        }
+        @keyframes orbFloat3 {
+            0%, 100% { transform: translate(0, 0) scale(0.95); }
+            33% { transform: translate(30px, 30px) scale(1.1); }
+            66% { transform: translate(-40px, -20px) scale(1); }
+        }
+
+        /* CSS Particles */
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 107, 53, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particleRise linear infinite;
+        }
+        .particle.gold { background: rgba(255, 215, 0, 0.5); }
+        @keyframes particleRise {
+            0% { transform: translateY(0) scale(0); opacity: 0; }
+            10% { opacity: 1; transform: scale(1); }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-600px) scale(0.5); opacity: 0; }
+        }
+
+        /* Glow pulse for buttons */
+        .btn-neon {
+            animation: glowPulse 2.5s ease-in-out infinite;
+        }
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 107, 53, 0.3), 0 5px 20px rgba(255, 107, 53, 0.1); }
+            50% { box-shadow: 0 0 25px rgba(255, 107, 53, 0.5), 0 5px 40px rgba(255, 107, 53, 0.2); }
+        }
+        .btn-neon:hover {
+            box-shadow: 0 0 35px rgba(255, 107, 53, 0.6), 0 0 60px rgba(255, 107, 53, 0.3) !important;
+            animation: none;
+        }
+
+        /* Card glow top accent */
+        .card-glow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--coral), var(--gold), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .card-glow:hover::before {
+            opacity: 1;
+        }
+
+        /* Image glow animation */
+        .img-glow {
+            animation: imgGlow 3s ease-in-out infinite alternate;
+        }
+        @keyframes imgGlow {
+            from { box-shadow: 0 0 15px rgba(255, 107, 53, 0.15), 0 8px 30px rgba(0, 0, 0, 0.4); }
+            to { box-shadow: 0 0 30px rgba(255, 107, 53, 0.35), 0 12px 40px rgba(0, 0, 0, 0.5); }
+        }
+
+        /* Wave separator */
+        .wave-separator {
+            height: 50px;
+            overflow: hidden;
+            line-height: 0;
+        }
+        .wave-separator svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Grid dot pattern */
+        .dot-pattern {
+            background-image: radial-gradient(rgba(255, 107, 53, 0.06) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+
+        /* Hero title glow */
+        .hero-glow {
+            text-shadow: 0 0 40px rgba(255, 107, 53, 0.3), 0 0 80px rgba(255, 107, 53, 0.1);
+        }
+
+        /* Counter glow */
+        .counter-glow {
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Motorcycle stripe accent */
+        .moto-stripe {
+            position: relative;
+        }
+        .moto-stripe::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--coral), var(--gold), var(--coral), transparent);
+            border-radius: 2px;
+        }
+
+        /* Section mesh gradient overlay */
+        .mesh-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 20% 50%, rgba(255, 107, 53, 0.04) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 20%, rgba(255, 215, 0, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
         .glass {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -992,31 +1144,40 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative w-full h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section class="relative w-full h-screen flex items-center justify-center overflow-hidden pt-20 dot-pattern">
         <div class="absolute inset-0 gradient-dark"></div>
-        <div class="absolute inset-0 opacity-30">
-            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-coral rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-            <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-gold rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse" style="animation-delay: 2s;"></div>
-        </div>
+        <!-- Floating Orbs -->
+        <div class="orb orb-1" style="width: 350px; height: 350px; background: rgba(255,107,53,0.12); top: 10%; left: 5%;"></div>
+        <div class="orb orb-2" style="width: 280px; height: 280px; background: rgba(255,215,0,0.08); top: 50%; right: 5%;"></div>
+        <div class="orb orb-3" style="width: 200px; height: 200px; background: rgba(255,107,53,0.06); bottom: 10%; left: 40%;"></div>
+        <!-- CSS Particles -->
+        <div class="particle" style="left: 10%; bottom: 0; animation-duration: 6s; animation-delay: 0s;"></div>
+        <div class="particle gold" style="left: 20%; bottom: 0; animation-duration: 8s; animation-delay: 1s;"></div>
+        <div class="particle" style="left: 35%; bottom: 0; animation-duration: 7s; animation-delay: 2s;"></div>
+        <div class="particle gold" style="left: 55%; bottom: 0; animation-duration: 9s; animation-delay: 0.5s;"></div>
+        <div class="particle" style="left: 70%; bottom: 0; animation-duration: 6.5s; animation-delay: 3s;"></div>
+        <div class="particle gold" style="left: 85%; bottom: 0; animation-duration: 7.5s; animation-delay: 1.5s;"></div>
+        <div class="particle" style="left: 45%; bottom: 0; animation-duration: 10s; animation-delay: 4s;"></div>
+        <div class="particle gold" style="left: 60%; bottom: 0; animation-duration: 8.5s; animation-delay: 2.5s;"></div>
 
         <div class="relative z-10 text-center px-4 max-w-5xl">
-            <h1 class="hero-title text-white mb-4" style="font-size: 4.5rem; line-height: 1.1;">
-                TAPICASCOS<br><span style="background: linear-gradient(135deg, #FF6B35 0%, #FFD700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">BARRANQUILLA</span>
+            <h1 class="hero-title hero-glow text-white mb-4" style="font-size: 4.5rem; line-height: 1.1;">
+                TAPICASCOS<br><span class="gradient-text-animated">BARRANQUILLA</span>
             </h1>
 
             <p class="hero-subtitle text-xl text-gray-300 mb-2">Tu casco como nuevo en 24 horas — tapizado, pintura y accesorios con 3 meses de garantía</p>
 
-            <p class="hero-subtitle text-sm text-gray-400 mb-8">Más de 540 clientes satisfechos en Barranquilla</p>
+            <p class="hero-subtitle text-sm text-gray-400 mb-8">Más de <span id="counter-clientes" class="text-coral font-bold">0</span> clientes satisfechos en Barranquilla</p>
 
             <div class="flex justify-center gap-4 mb-8 flex-wrap">
-                <div class="flex items-center gap-2 px-4 py-2 rounded-full border border-coral glass">
+                <div class="flex items-center gap-2 px-4 py-2 rounded-full border border-coral/40 glass" style="backdrop-filter: blur(10px);">
                     <span class="text-gold font-bold">4.9 ★</span>
                     <span class="text-sm">540+ clientes</span>
                 </div>
             </div>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="#cotizador" class="btn btn-primary text-lg">Cotizar Ahora</a>
+                <a href="#cotizador" class="btn btn-primary btn-neon text-lg">Cotizar Ahora</a>
                 <a href="https://wa.me/573003199232" target="_blank" class="btn btn-secondary text-lg">Escríbenos al WhatsApp</a>
             </div>
         </div>
@@ -1028,20 +1189,25 @@
         </div>
     </section>
 
+    <!-- Wave Separator -->
+    <div class="wave-separator" style="background: var(--navy);">
+        <svg viewBox="0 0 1200 50" preserveAspectRatio="none"><path d="M0,25 C300,50 900,0 1200,25 L1200,50 L0,50 Z" fill="var(--navy)"></path></svg>
+    </div>
+
     <!-- Servicios de Cascos -->
-    <section id="servicios" class="py-14 px-4 bg-navy relative">
+    <section id="servicios" class="py-14 px-4 bg-navy relative mesh-overlay">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-8">
-                <h2 class="text-white mb-4">Dale nueva vida a tu casco</h2>
+                <h2 class="text-white mb-4 moto-stripe relative pb-4">Dale nueva vida a tu casco</h2>
                 <p class="text-gray-400 text-lg">Desde $15.000 — entrega en 1-2 días con materiales premium</p>
             </div>
 
             <div class="fade-in-up text-center">
-                <img src="img/tapizado-premium-interior.jpg" alt="Tapizado Interior Premium" class="section-image">
+                <img src="img/tapizado-premium-interior.jpg" alt="Tapizado Interior Premium" class="section-image img-glow">
             </div>
 
             <div class="services-grid">
-                <div class="service-card fade-in-up">
+                <div class="service-card card-glow fade-in-up">
                     <div class="icon-wrapper">
                         <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"></path></svg>
                     </div>
@@ -1126,16 +1292,16 @@
     <section class="py-14 px-4 bg-navy relative">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-8">
-                <h2 class="text-white mb-4">Pintura que te hace único</h2>
+                <h2 class="text-white mb-4 moto-stripe relative pb-4">Pintura que te hace único</h2>
                 <p class="text-gray-400 text-lg">Diseños exclusivos que nadie más va a tener</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8 items-center">
                 <div class="fade-in-left">
-                    <img src="img/pintura-personalizada-shaft.jpg" alt="Pintura Personalizada" class="section-image">
+                    <img src="img/pintura-personalizada-shaft.jpg" alt="Pintura Personalizada" class="section-image img-glow">
                 </div>
                 <div class="fade-in-right">
-                    <div class="service-card">
+                    <div class="service-card card-glow">
                         <div class="icon-wrapper">
                             <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
                         </div>
@@ -1175,7 +1341,7 @@
             </div>
 
             <div class="fade-in-up text-center">
-                <img src="img/casco-ich-iridium.jpg" alt="Casco ICH Iridium" class="section-image">
+                <img src="img/casco-ich-iridium.jpg" alt="Casco ICH Iridium" class="section-image img-glow">
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -1215,10 +1381,10 @@
     </section>
 
     <!-- Accesorios y Visores -->
-    <section id="accesorios" class="py-14 px-4 bg-navy relative">
+    <section id="accesorios" class="py-14 px-4 bg-navy relative mesh-overlay">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-8">
-                <h2 class="text-white mb-4">Repuestos y visores para cualquier casco</h2>
+                <h2 class="text-white mb-4 moto-stripe relative pb-4">Repuestos y visores para cualquier casco</h2>
                 <p class="text-gray-400 text-lg">Originales y compatibles — siempre en stock</p>
             </div>
 
@@ -1323,22 +1489,22 @@
         </div>
     </section>
 
-    <div class="section-divider"></div>
+    <div class="wave-separator"><svg viewBox="0 0 1200 50" preserveAspectRatio="none"><path d="M0,25 C300,50 900,0 1200,25 L1200,50 L0,50 Z" fill="var(--navy)"></path></svg></div>
 
     <!-- Tapizado Sillas de Moto -->
-    <section id="sillas" class="py-14 px-4 bg-navy relative">
+    <section id="sillas" class="py-14 px-4 bg-navy relative mesh-overlay">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-8">
-                <h2 class="text-white mb-4">Tu silla como nueva</h2>
+                <h2 class="text-white mb-4 moto-stripe relative pb-4">Tu silla como nueva</h2>
                 <p class="text-gray-400 text-lg">Tapizado profesional para cualquier modelo desde $45.000</p>
             </div>
 
             <div class="fade-in-up text-center">
-                <img src="img/silla-boxer-tapizada.jpg" alt="Silla Boxer Tapizada" class="section-image">
+                <img src="img/silla-boxer-tapizada.jpg" alt="Silla Boxer Tapizada" class="section-image img-glow">
             </div>
 
             <div class="sillas-grid">
-                <div class="service-card fade-in-up">
+                <div class="service-card card-glow fade-in-up">
                     <h3 class="text-white mb-4">Silla Boxer</h3>
                     <p class="text-gray-400 mb-4 text-sm">Comodidad estándar</p>
                     <span class="price-badge">$45.000</span>
@@ -1424,7 +1590,7 @@
     <section id="cotizador" class="py-14 px-4 relative" style="background: linear-gradient(135deg, #0A0E1A 0%, #1A1F3A 50%, #0A0E1A 100%);">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-8">
-                <h2 class="text-white mb-4">Arma tu cotización</h2>
+                <h2 class="text-white mb-4 moto-stripe relative pb-4">Arma tu cotización</h2>
                 <p class="text-gray-400 text-lg">Selecciona los servicios que necesitas y te damos el precio al instante</p>
             </div>
 
@@ -1508,7 +1674,7 @@
                 </div>
             </div>
 
-            <div class="section-divider"></div>
+            <div class="wave-separator"><svg viewBox="0 0 1200 50" preserveAspectRatio="none"><path d="M0,25 C300,50 900,0 1200,25 L1200,50 L0,50 Z" fill="var(--navy)"></path></svg></div>
 
             <div class="grid md:grid-cols-2 gap-8 mt-8">
                 <div>
@@ -1567,7 +1733,7 @@
     <section class="py-14 px-4 bg-navy relative">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-8">
-                <h2 class="text-white mb-4">Lo Que Dicen Nuestros Clientes</h2>
+                <h2 class="text-white mb-4 moto-stripe relative pb-4">Lo Que Dicen Nuestros Clientes</h2>
                 <p class="text-gray-400 text-lg">Más de 540 clientes satisfechos en Barranquilla</p>
             </div>
 
@@ -1600,7 +1766,7 @@
     <section class="py-14 px-4 bg-navy relative">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-8">
-                <h2 class="text-white mb-4">Mira cómo quedan</h2>
+                <h2 class="text-white mb-4 moto-stripe relative pb-4">Mira cómo quedan</h2>
                 <p class="text-gray-400 text-lg">Cada casco y silla es un proyecto único</p>
             </div>
 
@@ -1649,7 +1815,7 @@
     <section id="ubicacion" class="py-14 px-4 bg-navy relative">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-8">
-                <h2 class="text-white mb-4">Visítanos o escríbenos</h2>
+                <h2 class="text-white mb-4 moto-stripe relative pb-4">Visítanos o escríbenos</h2>
                 <p class="text-gray-400 text-lg">Estamos en el centro de Barranquilla, fácil de llegar</p>
             </div>
 
@@ -1772,6 +1938,34 @@
                 }
             });
         }, observerOptions);
+
+        // Animated Counter
+        const counterEl = document.getElementById('counter-clientes');
+        if (counterEl) {
+            let counted = false;
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !counted) {
+                        counted = true;
+                        const target = 540;
+                        const duration = 2000;
+                        const step = Math.ceil(target / (duration / 16));
+                        let current = 0;
+                        const timer = setInterval(() => {
+                            current += step;
+                            if (current >= target) {
+                                current = target;
+                                clearInterval(timer);
+                                counterEl.textContent = target + '+';
+                            } else {
+                                counterEl.textContent = current;
+                            }
+                        }, 16);
+                    }
+                });
+            }, { threshold: 0.5 });
+            counterObserver.observe(counterEl);
+        }
 
         document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right').forEach(el => {
             el.classList.add('hidden');
