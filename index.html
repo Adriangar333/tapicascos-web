@@ -946,6 +946,8 @@
         }
 
         .hero-title {
+            font-size: 4rem !important;
+            line-height: 1.1;
             animation: slideDownFade 1s ease-out;
         }
 
@@ -975,25 +977,115 @@
             }
         }
 
+        /* Tablet */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            .section-image {
+                max-height: 280px;
+                max-width: 400px;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Mobile */
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem !important; }
-            h2 { font-size: 1.75rem !important; }
-            h3 { font-size: 1.25rem !important; }
+            h1 { font-size: 2.2rem !important; }
+            h2 { font-size: 1.5rem !important; }
+            h3 { font-size: 1.15rem !important; }
 
             .services-grid {
                 grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            .service-card {
+                padding: 1rem;
+            }
+
+            .section-image {
+                max-height: 220px;
+                max-width: 100%;
+                border-radius: 0.75rem;
             }
 
             .visor-table {
-                font-size: 0.875rem;
+                font-size: 0.8rem;
+            }
+            .visor-table th,
+            .visor-table td {
+                padding: 0.5rem 0.6rem;
             }
 
             #chat-widget {
                 max-width: 280px;
+                right: 0.75rem !important;
+                bottom: 4.5rem !important;
             }
 
             .quote-builder {
                 grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 2.8rem !important;
+                line-height: 1.15 !important;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+            }
+            .gallery-item {
+                height: 160px;
+            }
+
+            .map-container {
+                height: 280px;
+            }
+
+            .whatsapp-float {
+                width: 3rem;
+                height: 3rem;
+            }
+            .whatsapp-float svg {
+                width: 1.25rem;
+                height: 1.25rem;
+            }
+
+            .orb { display: none; }
+            .particle { display: none; }
+        }
+
+        /* Small mobile */
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem !important; }
+            h2 { font-size: 1.3rem !important; }
+            h3 { font-size: 1rem !important; }
+
+            .hero-title {
+                font-size: 2.2rem !important;
+            }
+
+            .section-image {
+                max-height: 180px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.4rem;
+            }
+            .gallery-item {
+                height: 130px;
+            }
+
+            .btn {
+                font-size: 0.875rem;
+                padding: 0.625rem 1.25rem;
             }
         }
 
@@ -1047,8 +1139,8 @@
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
             margin-top: 2rem;
         }
 
@@ -1093,15 +1185,14 @@
             box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
         }
 
-        @media (max-width: 768px) {
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
         .section-image {
-            max-width: 100%;
-            height: auto;
+            width: 100%;
+            max-width: 500px;
+            max-height: 320px;
+            object-fit: cover;
+            border-radius: 1rem;
+            display: block;
+            margin: 0 auto 1.5rem;
         }
     </style>
 </head>
@@ -1161,7 +1252,7 @@
         <div class="particle gold" style="left: 60%; bottom: 0; animation-duration: 8.5s; animation-delay: 2.5s;"></div>
 
         <div class="relative z-10 text-center px-4 max-w-5xl">
-            <h1 class="hero-title hero-glow text-white mb-4" style="font-size: 4.5rem; line-height: 1.1;">
+            <h1 class="hero-title hero-glow text-white mb-4">
                 TAPICASCOS<br><span class="gradient-text-animated">BARRANQUILLA</span>
             </h1>
 
@@ -1854,8 +1945,13 @@
                 </div>
 
                 <div class="fade-in-right">
-                    <div class="map-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3921.3847826476467!2d-74.78254!3d10.9603!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef42d7f5d5f5f5d%3A0x5f5f5f5f5f5f5f5f!2sBarranquilla!5e0!3m2!1ses!2sco!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+                    <div class="map-container" style="position: relative;">
+                        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: var(--light-navy); z-index: 0; flex-direction: column; gap: 0.5rem;">
+                            <svg fill="currentColor" viewBox="0 0 24 24" style="width: 2rem; height: 2rem; color: var(--coral);"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            <p style="color: var(--coral); font-size: 0.875rem;">Cra 45 # 82-30, Barranquilla</p>
+                            <a href="https://maps.google.com/?q=10.9603,-74.78254" target="_blank" style="color: var(--gold); font-size: 0.8rem; text-decoration: underline;">Abrir en Google Maps</a>
+                        </div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3921.3847826476467!2d-74.78254!3d10.9603!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef42d7f5d5f5f5d%3A0x5f5f5f5f5f5f5f5f!2sBarranquilla!5e0!3m2!1ses!2sco!4v1234567890" allowfullscreen="" loading="lazy" style="position: relative; z-index: 1;"></iframe>
                     </div>
                 </div>
             </div>
