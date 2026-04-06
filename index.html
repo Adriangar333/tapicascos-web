@@ -262,6 +262,11 @@
             50% { transform: translateY(30px); }
         }
 
+        @keyframes chatPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(255, 107, 53, 0); }
+        }
+
         #chat-widget {
             position: fixed;
             bottom: 6rem;
@@ -281,6 +286,7 @@
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
             transition: all 0.3s ease;
+            animation: chatPulse 2s infinite;
         }
 
         #chat-bubble:hover {
@@ -305,6 +311,41 @@
             margin-bottom: 1rem;
         }
 
+        .chat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+        }
+
+        .chat-header h3 {
+            font-size: 1.1rem;
+            color: white;
+            margin: 0;
+        }
+
+        .chat-header-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-header-btn {
+            background: none;
+            border: none;
+            color: var(--coral);
+            cursor: pointer;
+            padding: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-header-btn:hover {
+            color: var(--gold);
+        }
+
         .chat-message {
             margin-bottom: 1rem;
             display: flex;
@@ -318,6 +359,20 @@
 
         .chat-message.user {
             justify-content: flex-end;
+        }
+
+        .bot-avatar {
+            width: 2rem;
+            height: 2rem;
+            background: linear-gradient(135deg, var(--coral) 0%, #FF8C5A 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.75rem;
+            flex-shrink: 0;
         }
 
         .chat-message-content {
@@ -338,19 +393,72 @@
             color: white;
         }
 
+        .chat-input-area {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
         #chat-input {
+            flex: 1;
             background: var(--navy);
             border: 1px solid rgba(255, 107, 53, 0.2);
             color: #e5e7eb;
             padding: 0.75rem 1rem;
             border-radius: 0.375rem;
-            margin-top: 0.75rem;
             font-family: 'Inter', sans-serif;
             font-size: 0.875rem;
         }
 
         #chat-input::placeholder {
             color: rgba(229, 231, 235, 0.5);
+        }
+
+        .chat-send-btn {
+            background: var(--coral);
+            border: none;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .chat-send-btn:hover {
+            background: #FF8C5A;
+        }
+
+        .chat-mic-btn {
+            background: none;
+            border: 1px solid var(--coral);
+            color: var(--coral);
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .chat-mic-btn:hover {
+            background: rgba(255, 107, 53, 0.1);
+        }
+
+        .chat-mic-btn.listening {
+            background: rgba(255, 107, 53, 0.2);
+            animation: chatPulse 1s infinite;
+        }
+
+        .voice-status {
+            font-size: 0.75rem;
+            color: var(--coral);
+            padding: 0.25rem 0.5rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
         }
 
         .quick-reply-btn {
@@ -369,6 +477,21 @@
         .quick-reply-btn:hover {
             background: var(--coral);
             color: white;
+        }
+
+        .add-to-quote {
+            color: var(--coral);
+            font-size: 0.75rem;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            text-decoration: underline;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+
+        .add-to-quote:hover {
+            opacity: 1;
         }
 
         .whatsapp-float {
@@ -399,7 +522,191 @@
             color: white;
         }
 
-        /* Scroll animation classes - elements start VISIBLE, JS adds .hidden to collapse them */
+        .quote-builder {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .quote-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .quote-category {
+            background: rgba(255, 107, 53, 0.1);
+            border-left: 3px solid var(--coral);
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .quote-category h4 {
+            color: var(--coral);
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .quote-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+        }
+
+        .quote-item:last-child {
+            border-bottom: none;
+        }
+
+        .quote-item-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .quote-item-name {
+            color: #e5e7eb;
+            font-size: 0.9rem;
+        }
+
+        .quote-item-price {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .quote-add-btn {
+            background: var(--coral);
+            color: white;
+            border: none;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .quote-add-btn:hover {
+            background: #FF8C5A;
+        }
+
+        .quote-summary {
+            background: var(--navy);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .quote-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(255, 107, 53, 0.1);
+            border-radius: 0.5rem;
+            border-top: 2px solid var(--coral);
+            border-bottom: 2px solid var(--coral);
+        }
+
+        .quote-total-label {
+            font-size: 1rem;
+            color: #e5e7eb;
+        }
+
+        .quote-total-amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold) 0%, #FFC700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .quote-selected-items {
+            flex: 1;
+            overflow-y: auto;
+            max-height: 250px;
+            padding-right: 0.5rem;
+        }
+
+        .quote-selected-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background: rgba(255, 107, 53, 0.1);
+            border-left: 2px solid var(--coral);
+            border-radius: 0.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quote-selected-item-info {
+            flex: 1;
+        }
+
+        .quote-selected-item-name {
+            color: #e5e7eb;
+            font-size: 0.9rem;
+        }
+
+        .quote-selected-item-qty {
+            color: var(--gold);
+            font-size: 0.8rem;
+        }
+
+        .quote-selected-item-remove {
+            background: none;
+            border: none;
+            color: var(--coral);
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .quote-selected-item-remove:hover {
+            color: #FF8C5A;
+        }
+
+        .quote-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .quote-action-btn {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .quote-action-btn.primary {
+            background: linear-gradient(135deg, var(--coral) 0%, #FF8C5A 100%);
+            color: white;
+        }
+
+        .quote-action-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .quote-action-btn.secondary {
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--coral);
+            border: 1px solid var(--coral);
+        }
+
+        .quote-action-btn.secondary:hover {
+            background: rgba(255, 107, 53, 0.2);
+        }
+
         .animate-on-scroll {
             opacity: 1;
             transform: translateY(0) translateX(0);
@@ -411,7 +718,6 @@
             transform: translateY(20px);
         }
 
-        /* Legacy class support for backwards compatibility */
         .fade-in {
             opacity: 1;
         }
@@ -533,6 +839,10 @@
             #chat-widget {
                 max-width: 280px;
             }
+
+            .quote-builder {
+                grid-template-columns: 1fr;
+            }
         }
 
         .testimonial-card {
@@ -583,85 +893,24 @@
             flex-shrink: 0;
         }
 
-        .section-image {
-            max-width: 480px;
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 16px;
-            margin: 0 auto 2rem auto;
-            border: 2px solid rgba(255, 107, 53, 0.25);
-            display: block;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 107, 53, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .section-image:hover {
-            transform: scale(1.02);
-            box-shadow: 0 12px 40px rgba(255, 107, 53, 0.2), 0 0 0 1px rgba(255, 107, 53, 0.3);
-        }
-
-        @media (max-width: 768px) {
-            .section-image {
-                max-width: 100%;
-                height: 180px;
-            }
-        }
-
-        .gallery-section {
-            background: rgba(255, 107, 53, 0.05);
-            border-top: 1px solid rgba(255, 107, 53, 0.1);
-            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
-        }
-
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .gallery-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .gallery-item {
-            position: relative;
+            border-radius: 0.75rem;
             overflow: hidden;
-            border-radius: 12px;
-            aspect-ratio: 4 / 3;
-            cursor: pointer;
-            border: 2px solid rgba(255, 107, 53, 0.2);
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out, border-color 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            max-height: 240px;
+            aspect-ratio: 4/3;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            transition: transform 0.3s ease;
         }
 
         .gallery-item:hover {
-            border-color: var(--coral);
+            transform: scale(1.02);
         }
-
-        .gallery-item.hidden {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .gallery-item:nth-child(1) { transition-delay: 0s; }
-        .gallery-item:nth-child(2) { transition-delay: 0.1s; }
-        .gallery-item:nth-child(3) { transition-delay: 0.2s; }
-        .gallery-item:nth-child(4) { transition-delay: 0.3s; }
-        .gallery-item:nth-child(5) { transition-delay: 0.4s; }
-        .gallery-item:nth-child(6) { transition-delay: 0.5s; }
 
         .gallery-item img {
             width: 100%;
@@ -672,29 +921,6 @@
 
         .gallery-item:hover img {
             transform: scale(1.05);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(10, 14, 26, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        .gallery-caption {
-            color: white;
-            text-align: center;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            padding: 1rem;
         }
 
         .gallery-cta {
@@ -720,6 +946,11 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .section-image {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -733,6 +964,7 @@
 
             <div class="hidden md:flex items-center gap-8">
                 <a href="#servicios" class="text-sm font-medium hover:text-coral transition-colors">Servicios</a>
+                <a href="#cotizador" class="text-sm font-medium hover:text-coral transition-colors">Cotizar</a>
                 <a href="#accesorios" class="text-sm font-medium hover:text-coral transition-colors">Accesorios</a>
                 <a href="#sillas" class="text-sm font-medium hover:text-coral transition-colors">Sillas</a>
                 <a href="#ubicacion" class="text-sm font-medium hover:text-coral transition-colors">Ubicación</a>
@@ -750,6 +982,7 @@
         <div id="mobile-menu" class="hidden md:hidden" style="background: rgba(10, 14, 26, 0.98); backdrop-filter: blur(10px);">
             <div class="px-4 py-6 flex flex-col gap-4">
                 <a href="#servicios" class="text-lg font-medium text-gray-200 hover:text-coral transition-colors mobile-link">Servicios</a>
+                <a href="#cotizador" class="text-lg font-medium text-gray-200 hover:text-coral transition-colors mobile-link">Cotizar</a>
                 <a href="#accesorios" class="text-lg font-medium text-gray-200 hover:text-coral transition-colors mobile-link">Accesorios</a>
                 <a href="#sillas" class="text-lg font-medium text-gray-200 hover:text-coral transition-colors mobile-link">Sillas</a>
                 <a href="#ubicacion" class="text-lg font-medium text-gray-200 hover:text-coral transition-colors mobile-link">Ubicación</a>
@@ -771,7 +1004,9 @@
                 TAPICASCOS<br><span style="background: linear-gradient(135deg, #FF6B35 0%, #FFD700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">BARRANQUILLA</span>
             </h1>
 
-            <p class="hero-subtitle text-xl text-gray-300 mb-8">Personalización Premium de Cascos | Tapizado • Pintura • Accesorios</p>
+            <p class="hero-subtitle text-xl text-gray-300 mb-2">Tu casco como nuevo en 24 horas — tapizado, pintura y accesorios con 3 meses de garantía</p>
+
+            <p class="hero-subtitle text-sm text-gray-400 mb-8">Más de 540 clientes satisfechos en Barranquilla</p>
 
             <div class="flex justify-center gap-4 mb-8 flex-wrap">
                 <div class="flex items-center gap-2 px-4 py-2 rounded-full border border-coral glass">
@@ -781,8 +1016,8 @@
             </div>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="#servicios" class="btn btn-primary text-lg">Ver Servicios</a>
-                <a href="https://wa.me/573003199232" target="_blank" class="btn btn-secondary text-lg">WhatsApp Directo</a>
+                <a href="#cotizador" class="btn btn-primary text-lg">Cotizar Ahora</a>
+                <a href="https://wa.me/573003199232" target="_blank" class="btn btn-secondary text-lg">Escríbenos al WhatsApp</a>
             </div>
         </div>
 
@@ -797,8 +1032,8 @@
     <section id="servicios" class="py-14 px-4 bg-navy relative">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-8">
-                <h2 class="text-white mb-4">Servicios de Cascos</h2>
-                <p class="text-gray-400 text-lg">Personalización profesional con garantía de 3 meses</p>
+                <h2 class="text-white mb-4">Dale nueva vida a tu casco</h2>
+                <p class="text-gray-400 text-lg">Desde $15.000 — entrega en 1-2 días con materiales premium</p>
             </div>
 
             <div class="fade-in-up text-center">
@@ -816,6 +1051,7 @@
                         <span class="price-badge">$40.000</span>
                         <span class="delivery-badge">1 día</span>
                     </div>
+                    <span class="add-to-quote" data-service="Tapizado Completo" data-price="40000">Agregar al cotizador</span>
                 </div>
 
                 <div class="service-card fade-in-up" style="animation-delay: 0.1s;">
@@ -828,6 +1064,7 @@
                         <span class="price-badge">$60.000</span>
                         <span class="delivery-badge">1 día</span>
                     </div>
+                    <span class="add-to-quote" data-service="Tapizado Certificado" data-price="60000">Agregar al cotizador</span>
                 </div>
 
                 <div class="service-card fade-in-up" style="animation-delay: 0.2s;">
@@ -840,6 +1077,7 @@
                         <span class="price-badge">$90.000</span>
                         <span class="delivery-badge">2 días</span>
                     </div>
+                    <span class="add-to-quote" data-service="Tapizado Original" data-price="90000">Agregar al cotizador</span>
                 </div>
 
                 <div class="service-card fade-in-up" style="animation-delay: 0.3s;">
@@ -849,125 +1087,91 @@
                     <h3 class="text-white mb-2">Cambio Cachetes</h3>
                     <p class="text-sm text-gray-400 mb-4 flex-grow">Par de cachetes sencillo</p>
                     <div class="flex items-center justify-between">
-                        <span class="price-badge">$20.000</span>
-                        <span class="delivery-badge">Inmediato</span>
+                        <span class="price-badge">$25.000</span>
+                        <span class="delivery-badge">1 día</span>
                     </div>
+                    <span class="add-to-quote" data-service="Cambio Cachetes" data-price="25000">Agregar al cotizador</span>
                 </div>
 
                 <div class="service-card fade-in-up" style="animation-delay: 0.4s;">
                     <div class="icon-wrapper">
-                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"></path></svg>
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-13c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5z"></path></svg>
                     </div>
-                    <h3 class="text-white mb-2">Cachetes Original</h3>
-                    <p class="text-sm text-gray-400 mb-4 flex-grow">Par de cachetes tipo original</p>
+                    <h3 class="text-white mb-2">Cambio Badana</h3>
+                    <p class="text-sm text-gray-400 mb-4 flex-grow">Badana premium para mayor confort</p>
                     <div class="flex items-center justify-between">
                         <span class="price-badge">$35.000</span>
-                        <span class="delivery-badge">Inmediato</span>
+                        <span class="delivery-badge">1 día</span>
                     </div>
+                    <span class="add-to-quote" data-service="Cambio Badana" data-price="35000">Agregar al cotizador</span>
                 </div>
 
                 <div class="service-card fade-in-up" style="animation-delay: 0.5s;">
                     <div class="icon-wrapper">
-                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-0.9-2-2-2zM1 12c0 2.21 1.79 4 4 4s4-1.79 4-4-1.79-4-4-4-4 1.79-4 4zm6-8c0 1.1 0.9 2 2 2s2-0.9 2-2-0.9-2-2-2-2 0.9-2 2zm9 4c-1.1 0-1.99 0.9-1.99 2s0.89 2 1.99 2 2-0.9 2-2-0.9-2-2-2zm4 8c0 2.21 1.79 4 4 4s4-1.79 4-4-1.79-4-4-4-4 1.79-4 4zm4-14c-1.1 0-2 0.9-2 2s0.9 2 2 2 2-0.9 2-2-0.9-2-2-2z"></path></svg>
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 4c4.41 0 8 1.79 8 4v10c0 2.21-3.59 4-8 4s-8-1.79-8-4V8c0-2.21 3.59-4 8-4m0-2C6.48 2 2 3.58 2 6v12c0 2.42 3.58 4 6 4 2.42 0 6 1.58 10 1.58 2.42 0 4-1.58 4-4V8c0-2.42-1.58-4-4-4-2.42 0-6-1.58-10-1.58z"></path></svg>
                     </div>
-                    <h3 class="text-white mb-2">Ajuste Talla</h3>
-                    <p class="text-sm text-gray-400 mb-4 flex-grow">Ajuste y alineación de talla</p>
+                    <h3 class="text-white mb-2">Kit Completo</h3>
+                    <p class="text-sm text-gray-400 mb-4 flex-grow">Tapizado + cachetes + badana</p>
                     <div class="flex items-center justify-between">
-                        <span class="price-badge">$25.000</span>
-                        <span class="delivery-badge">1 día</span>
+                        <span class="price-badge">$110.000</span>
+                        <span class="delivery-badge">2 días</span>
                     </div>
-                </div>
-
-                <div class="service-card fade-in-up" style="animation-delay: 0.6s;">
-                    <div class="icon-wrapper">
-                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2c5.33 4.55 8 6.75 8 11 0 4.08-3.58 7-8 7s-8-2.92-8-7c0-4.25 2.67-6.45 8-11z"></path></svg>
-                    </div>
-                    <h3 class="text-white mb-2">Ajuste Sencillo</h3>
-                    <p class="text-sm text-gray-400 mb-4 flex-grow">Casco sencillo con ajuste básico</p>
-                    <div class="flex items-center justify-between">
-                        <span class="price-badge">$15.000</span>
-                        <span class="delivery-badge">1 día</span>
-                    </div>
-                </div>
-
-                <div class="service-card fade-in-up" style="animation-delay: 0.7s;">
-                    <div class="icon-wrapper">
-                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 5.5c0-.83-.67-1.5-1.5-1.5H9c-.83 0-1.5.67-1.5 1.5v12c0 .83.67 1.5 1.5 1.5h6c.83 0 1.5-.67 1.5-1.5v-12zM9 6h6v11H9V6z"></path></svg>
-                    </div>
-                    <h3 class="text-white mb-2">Lavado de Casco</h3>
-                    <p class="text-sm text-gray-400 mb-4 flex-grow">Limpieza profesional profunda</p>
-                    <div class="flex items-center justify-between">
-                        <span class="price-badge">$20.000</span>
-                        <span class="delivery-badge">1 día</span>
-                    </div>
-                </div>
-
-                <div class="service-card fade-in-up" style="animation-delay: 0.8s;">
-                    <div class="icon-wrapper">
-                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
-                    </div>
-                    <h3 class="text-white mb-2">Cambio Broche</h3>
-                    <p class="text-sm text-gray-400 mb-4 flex-grow">Broche y correas seguridad</p>
-                    <div class="flex items-center justify-between">
-                        <span class="price-badge">$25.000</span>
-                        <span class="delivery-badge">Inmediato</span>
-                    </div>
+                    <span class="add-to-quote" data-service="Kit Completo" data-price="110000">Agregar al cotizador</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="section-divider"></div>
-
-    <!-- Pintura -->
+    <!-- Pintura Section -->
     <section class="py-14 px-4 bg-navy relative">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-white mb-4">Servicios de Pintura</h2>
-                <p class="text-gray-400">Acabados profesionales y personalizados</p>
+            <div class="text-center mb-8">
+                <h2 class="text-white mb-4">Pintura que te hace único</h2>
+                <p class="text-gray-400 text-lg">Diseños exclusivos que nadie más va a tener</p>
             </div>
 
-            <div class="fade-in-up text-center">
-                <img src="img/pintura-personalizada-shaft.jpg" alt="Pintura Personalizada" class="section-image">
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="service-card fade-in-left">
-                    <div class="icon-wrapper">
-                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83zM3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z"></path></svg>
-                    </div>
-                    <h3 class="text-white mb-3">Pintura Sencilla</h3>
-                    <p class="text-sm text-gray-400 mb-6">Acabado uniforme de color sólido con excelente presentación</p>
-                    <div class="flex items-center justify-between pt-4 border-t border-coral border-opacity-20">
-                        <span class="price-badge">$50.000</span>
-                        <span class="delivery-badge">4 días</span>
-                    </div>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="fade-in-left">
+                    <img src="img/pintura-personalizada-shaft.jpg" alt="Pintura Personalizada" class="section-image">
                 </div>
-
-                <div class="service-card fade-in-right">
-                    <div class="icon-wrapper">
-                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+                <div class="fade-in-right">
+                    <div class="service-card">
+                        <div class="icon-wrapper">
+                            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+                        </div>
+                        <h3 class="text-white mb-2">Diseño Personalizado</h3>
+                        <p class="text-sm text-gray-400 mb-4">Pintura a mano alzada o con plantilla</p>
+                        <div class="flex items-center justify-between">
+                            <span class="price-badge">$80.000</span>
+                            <span class="delivery-badge">3 días</span>
+                        </div>
+                        <span class="add-to-quote" data-service="Diseño Personalizado" data-price="80000">Agregar al cotizador</span>
                     </div>
-                    <h3 class="text-white mb-3">Pintura Personalizada</h3>
-                    <p class="text-sm text-gray-400 mb-6">Diseños únicos, gráficos y acabados premium personalizados</p>
-                    <div class="flex items-center justify-between pt-4 border-t border-coral border-opacity-20">
-                        <span class="price-badge">$100K - $150K</span>
-                        <span class="delivery-badge">5 días</span>
+
+                    <div class="service-card mt-4">
+                        <div class="icon-wrapper">
+                            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"></path></svg>
+                        </div>
+                        <h3 class="text-white mb-2">Pintura Metalizada</h3>
+                        <p class="text-sm text-gray-400 mb-4">Con efecto metalizado premium</p>
+                        <div class="flex items-center justify-between">
+                            <span class="price-badge">$120.000</span>
+                            <span class="delivery-badge">3 días</span>
+                        </div>
+                        <span class="add-to-quote" data-service="Pintura Metalizada" data-price="120000">Agregar al cotizador</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <div class="section-divider"></div>
 
     <!-- Cambiatón Promo -->
     <section class="py-14 px-4 relative promo-banner">
         <div class="absolute inset-0 z-0"></div>
         <div class="max-w-7xl mx-auto relative z-10">
-            <div class="text-center mb-12">
+            <div class="text-center mb-8">
                 <h2 class="text-white mb-4">CAMBIATÓN ESPECIAL</h2>
-                <p class="text-lg text-white opacity-90">¡Cambia tu casco viejo por uno nuevo a precios increíbles!</p>
+                <p class="text-lg text-white opacity-90">¡Trae tu casco viejo y llévate uno nuevo desde $45.000!</p>
             </div>
 
             <div class="fade-in-up text-center">
@@ -1004,20 +1208,18 @@
                 </div>
             </div>
 
-            <div class="text-center mt-12">
-                <a href="https://wa.me/573003199232" target="_blank" class="btn btn-primary text-lg">Aprovechar Cambiatón</a>
+            <div class="text-center mt-8">
+                <a href="https://wa.me/573003199232?text=Hola%20Tapicascos!%20Me%20interesa%20el%20cambiatón%20especial" target="_blank" class="btn btn-primary text-lg">Aprovechar Cambiatón</a>
             </div>
         </div>
     </section>
 
-    <div class="section-divider"></div>
-
     <!-- Accesorios y Visores -->
     <section id="accesorios" class="py-14 px-4 bg-navy relative">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-white mb-4">Accesorios y Visores</h2>
-                <p class="text-gray-400">Amplio catálogo de piezas de reemplazo y mejora</p>
+            <div class="text-center mb-8">
+                <h2 class="text-white mb-4">Repuestos y visores para cualquier casco</h2>
+                <p class="text-gray-400 text-lg">Originales y compatibles — siempre en stock</p>
             </div>
 
             <div class="overflow-x-auto">
@@ -1126,9 +1328,9 @@
     <!-- Tapizado Sillas de Moto -->
     <section id="sillas" class="py-14 px-4 bg-navy relative">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-white mb-4">Tapizado de Sillas de Moto</h2>
-                <p class="text-gray-400">Comodidad y estilo para tu asiento</p>
+            <div class="text-center mb-8">
+                <h2 class="text-white mb-4">Tu silla como nueva</h2>
+                <p class="text-gray-400 text-lg">Tapizado profesional para cualquier modelo desde $45.000</p>
             </div>
 
             <div class="fade-in-up text-center">
@@ -1138,498 +1340,407 @@
             <div class="sillas-grid">
                 <div class="service-card fade-in-up">
                     <h3 class="text-white mb-4">Silla Boxer</h3>
-                    <p class="text-gray-400 mb-6 text-sm">Comodidad estándar</p>
+                    <p class="text-gray-400 mb-4 text-sm">Comodidad estándar</p>
                     <span class="price-badge">$45.000</span>
+                    <span class="add-to-quote" data-service="Silla Boxer" data-price="45000">Agregar al cotizador</span>
                 </div>
                 <div class="service-card fade-in-up" style="animation-delay: 0.05s;">
                     <h3 class="text-white mb-4">Silla AX4</h3>
-                    <p class="text-gray-400 mb-6 text-sm">Ajuste perfecto</p>
+                    <p class="text-gray-400 mb-4 text-sm">Ajuste perfecto</p>
                     <span class="price-badge">$45.000</span>
+                    <span class="add-to-quote" data-service="Silla AX4" data-price="45000">Agregar al cotizador</span>
                 </div>
                 <div class="service-card fade-in-up" style="animation-delay: 0.1s;">
                     <h3 class="text-white mb-4">Silla Pulsar 200</h3>
-                    <p class="text-gray-400 mb-6 text-sm">Premium comfort</p>
+                    <p class="text-gray-400 mb-4 text-sm">Premium comfort</p>
                     <span class="price-badge">$60.000</span>
+                    <span class="add-to-quote" data-service="Silla Pulsar 200" data-price="60000">Agregar al cotizador</span>
                 </div>
                 <div class="service-card fade-in-up" style="animation-delay: 0.15s;">
                     <h3 class="text-white mb-4">Silla NKD</h3>
-                    <p class="text-gray-400 mb-6 text-sm">Resistente</p>
+                    <p class="text-gray-400 mb-4 text-sm">Resistente</p>
                     <span class="price-badge">$45.000</span>
+                    <span class="add-to-quote" data-service="Silla NKD" data-price="45000">Agregar al cotizador</span>
                 </div>
                 <div class="service-card fade-in-up" style="animation-delay: 0.2s;">
                     <h3 class="text-white mb-4">Silla Criptón</h3>
-                    <p class="text-gray-400 mb-6 text-sm">Sencilla económica</p>
+                    <p class="text-gray-400 mb-4 text-sm">Sencilla económica</p>
                     <span class="price-badge">$45.000</span>
+                    <span class="add-to-quote" data-service="Silla Criptón" data-price="45000">Agregar al cotizador</span>
                 </div>
                 <div class="service-card fade-in-up" style="animation-delay: 0.25s;">
                     <h3 class="text-white mb-4">Silla BWS 2T</h3>
-                    <p class="text-gray-400 mb-6 text-sm">Compacta</p>
+                    <p class="text-gray-400 mb-4 text-sm">Compacta</p>
                     <span class="price-badge">$50.000</span>
+                    <span class="add-to-quote" data-service="Silla BWS 2T" data-price="50000">Agregar al cotizador</span>
                 </div>
                 <div class="service-card fade-in-up" style="animation-delay: 0.3s;">
                     <h3 class="text-white mb-4">Silla BWS 4T</h3>
-                    <p class="text-gray-400 mb-6 text-sm">Premium plus</p>
+                    <p class="text-gray-400 mb-4 text-sm">Premium plus</p>
                     <span class="price-badge">$65.000</span>
+                    <span class="add-to-quote" data-service="Silla BWS 4T" data-price="65000">Agregar al cotizador</span>
                 </div>
                 <div class="service-card fade-in-up" style="animation-delay: 0.35s;">
                     <h3 class="text-white mb-4">Silla XTZ</h3>
-                    <p class="text-gray-400 mb-6 text-sm">Máxima comodidad</p>
+                    <p class="text-gray-400 mb-4 text-sm">Máxima comodidad</p>
                     <span class="price-badge">$70.000</span>
+                    <span class="add-to-quote" data-service="Silla XTZ" data-price="70000">Agregar al cotizador</span>
                 </div>
                 <div class="service-card fade-in-up" style="animation-delay: 0.4s;">
                     <h3 class="text-white mb-4">Silla Eco Deluxe</h3>
-                    <p class="text-gray-400 mb-6 text-sm">Económica</p>
+                    <p class="text-gray-400 mb-4 text-sm">Económica</p>
                     <span class="price-badge">$45.000</span>
+                    <span class="add-to-quote" data-service="Silla Eco Deluxe" data-price="45000">Agregar al cotizador</span>
                 </div>
                 <div class="service-card fade-in-up" style="animation-delay: 0.45s;">
                     <h3 class="text-white mb-4">Silla Platino</h3>
-                    <p class="text-gray-400 mb-6 text-sm">Lujo</p>
+                    <p class="text-gray-400 mb-4 text-sm">Lujo</p>
                     <span class="price-badge">$45.000</span>
+                    <span class="add-to-quote" data-service="Silla Platino" data-price="45000">Agregar al cotizador</span>
                 </div>
                 <div class="service-card fade-in-up" style="animation-delay: 0.5s;">
                     <h3 class="text-white mb-4">Silla Discover</h3>
-                    <p class="text-gray-400 mb-6 text-sm">Estándar</p>
+                    <p class="text-gray-400 mb-4 text-sm">Estándar</p>
                     <span class="price-badge">$45.000</span>
+                    <span class="add-to-quote" data-service="Silla Discover" data-price="45000">Agregar al cotizador</span>
                 </div>
                 <div class="service-card fade-in-up" style="animation-delay: 0.55s;">
                     <h3 class="text-white mb-4">Relleno Adicional</h3>
-                    <p class="text-gray-400 mb-6 text-sm">Esponja extra</p>
+                    <p class="text-gray-400 mb-4 text-sm">Esponja extra</p>
                     <span class="price-badge">$15.000</span>
+                    <span class="add-to-quote" data-service="Relleno Adicional" data-price="15000">Agregar al cotizador</span>
                 </div>
                 <div class="service-card fade-in-up" style="animation-delay: 0.6s;">
                     <h3 class="text-white mb-4">Manta Personalizada</h3>
-                    <p class="text-gray-400 mb-6 text-sm">Diseño único</p>
+                    <p class="text-gray-400 mb-4 text-sm">Diseño único</p>
                     <span class="price-badge">$70.000</span>
+                    <span class="add-to-quote" data-service="Manta Personalizada" data-price="70000">Agregar al cotizador</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="section-divider"></div>
+    <!-- Cotizador Interactivo -->
+    <section id="cotizador" class="py-14 px-4 relative" style="background: linear-gradient(135deg, #0A0E1A 0%, #1A1F3A 50%, #0A0E1A 100%);">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-8">
+                <h2 class="text-white mb-4">Arma tu cotización</h2>
+                <p class="text-gray-400 text-lg">Selecciona los servicios que necesitas y te damos el precio al instante</p>
+            </div>
 
-    <!-- Garantía y Pagos -->
+            <div class="quote-builder">
+                <div class="quote-section">
+                    <div class="quote-category">
+                        <h4>Servicios de Cascos</h4>
+                        <div id="quote-cascos"></div>
+                    </div>
+
+                    <div class="quote-category">
+                        <h4>Pintura</h4>
+                        <div id="quote-pintura"></div>
+                    </div>
+
+                    <div class="quote-category">
+                        <h4>Accesorios</h4>
+                        <div id="quote-accesorios"></div>
+                    </div>
+
+                    <div class="quote-category">
+                        <h4>Sillas</h4>
+                        <div id="quote-sillas"></div>
+                    </div>
+                </div>
+
+                <div class="quote-section">
+                    <div class="quote-summary">
+                        <h3 class="text-white" style="margin-bottom: 1rem;">Tu cotización</h3>
+
+                        <div class="quote-selected-items" id="quote-selected-items">
+                            <p class="text-gray-400 text-center text-sm py-4">Selecciona servicios para comenzar</p>
+                        </div>
+
+                        <div class="quote-total">
+                            <span class="quote-total-label">Total:</span>
+                            <span class="quote-total-amount" id="quote-total-amount">$0</span>
+                        </div>
+
+                        <div class="quote-actions">
+                            <button class="quote-action-btn primary" id="quote-send-btn" onclick="sendQuoteViaWhatsApp()">Enviar por WhatsApp</button>
+                            <button class="quote-action-btn secondary" id="quote-clear-btn" onclick="clearQuote()">Limpiar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Garantía y Formas de Pago -->
     <section class="py-14 px-4 bg-navy relative">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-white mb-4">Garantía y Formas de Pago</h2>
-                <p class="text-gray-400">Confianza en cada servicio</p>
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-8">
+                <h2 class="text-white mb-4">Compra tranquilo</h2>
+                <p class="text-gray-400 text-lg">3 meses de garantía en todo, entrega rápida, pago fácil</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="glass rounded-lg p-8 text-center fade-in-left">
-                    <svg class="w-12 h-12 mx-auto text-coral mb-4" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
-                    </svg>
-                    <h3 class="text-white font-bold mb-2">3 Meses Garantía</h3>
-                    <p class="text-sm text-gray-400">En todos nuestros servicios de tapizado</p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="trust-badge" style="flex-direction: column; align-items: flex-start; border: 1px solid rgba(255, 107, 53, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; width: 100%; margin-bottom: 0.5rem;">
+                        <svg fill="currentColor" viewBox="0 0 24 24" style="width: 1.5rem; height: 1.5rem; color: var(--coral);"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"></path></svg>
+                        <h3 class="text-white" style="margin: 0; font-size: 1rem;">Garantía 3 Meses</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">En todos nuestros servicios y productos</p>
                 </div>
 
-                <div class="glass rounded-lg p-8 text-center fade-in-up">
-                    <svg class="w-12 h-12 mx-auto text-coral mb-4" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"></path>
-                    </svg>
-                    <h3 class="text-white font-bold mb-2">Entrega Rápida</h3>
-                    <p class="text-sm text-gray-400">Según el tipo de servicio contratado</p>
+                <div class="trust-badge" style="flex-direction: column; align-items: flex-start; border: 1px solid rgba(255, 107, 53, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; width: 100%; margin-bottom: 0.5rem;">
+                        <svg fill="currentColor" viewBox="0 0 24 24" style="width: 1.5rem; height: 1.5rem; color: var(--coral);"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-13c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5z"></path></svg>
+                        <h3 class="text-white" style="margin: 0; font-size: 1rem;">Entrega Rápida</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">1-3 días según el servicio</p>
                 </div>
 
-                <div class="glass rounded-lg p-8 text-center fade-in-right">
-                    <svg class="w-12 h-12 mx-auto text-coral mb-4" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"></path>
-                    </svg>
-                    <h3 class="text-white font-bold mb-2">Formas de Pago</h3>
-                    <p class="text-sm text-gray-400">Efectivo y Transferencia disponibles</p>
+                <div class="trust-badge" style="flex-direction: column; align-items: flex-start; border: 1px solid rgba(255, 107, 53, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; width: 100%; margin-bottom: 0.5rem;">
+                        <svg fill="currentColor" viewBox="0 0 24 24" style="width: 1.5rem; height: 1.5rem; color: var(--coral);"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"></path></svg>
+                        <h3 class="text-white" style="margin: 0; font-size: 1rem;">Pago Flexible</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">Efectivo, Nequi, Daviplata o transferencia</p>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="grid md:grid-cols-2 gap-8 mt-8">
+                <div>
+                    <h3 class="text-white mb-4">¿Por qué elegirnos?</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-gray-300">
+                            <svg class="w-5 h-5 text-coral" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg>
+                            Profesionales con 8+ años de experiencia
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-300">
+                            <svg class="w-5 h-5 text-coral" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg>
+                            Materiales premium y originales
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-300">
+                            <svg class="w-5 h-5 text-coral" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg>
+                            Presupuestos sin compromiso
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-300">
+                            <svg class="w-5 h-5 text-coral" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg>
+                            Ubicado en el centro de Barranquilla
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-white mb-4">Proceso Simple</h3>
+                    <div class="space-y-3">
+                        <div class="flex gap-3">
+                            <div class="w-8 h-8 rounded-full bg-coral flex items-center justify-center text-white font-bold text-sm">1</div>
+                            <div>
+                                <p class="text-white font-semibold">Cuéntanos qué necesitas</p>
+                                <p class="text-sm text-gray-400">Visita nuestro local o escribe por WhatsApp</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="w-8 h-8 rounded-full bg-coral flex items-center justify-center text-white font-bold text-sm">2</div>
+                            <div>
+                                <p class="text-white font-semibold">Hacemos el presupuesto</p>
+                                <p class="text-sm text-gray-400">Te damos precio y tiempo de entrega</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="w-8 h-8 rounded-full bg-coral flex items-center justify-center text-white font-bold text-sm">3</div>
+                            <div>
+                                <p class="text-white font-semibold">Listo en 1-3 días</p>
+                                <p class="text-sm text-gray-400">Recoges tu casco o silla renovados</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <div class="section-divider"></div>
 
     <!-- Testimonios -->
     <section class="py-14 px-4 bg-navy relative">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-8">
                 <h2 class="text-white mb-4">Lo Que Dicen Nuestros Clientes</h2>
-                <p class="text-gray-400">Satisfacción garantizada en cada proyecto</p>
+                <p class="text-gray-400 text-lg">Más de 540 clientes satisfechos en Barranquilla</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-3 gap-6">
                 <div class="testimonial-card fade-in-up">
                     <div class="star-rating">★★★★★</div>
-                    <p class="text-gray-300 mb-4 text-sm italic">"Excelente trabajo, mi casco quedó como nuevo. Muy profesionales y puntuales."</p>
-                    <p class="text-coral font-bold">Juan Pérez</p>
-                    <p class="text-xs text-gray-400">Barranquilla</p>
+                    <p class="text-gray-300 mb-4">"Quedó increíble mi casco. El tapizado es de muy buena calidad y el servicio fue rápido. Ya volveré"</p>
+                    <p class="text-white font-semibold">Carlos M.</p>
+                    <p class="text-sm text-gray-400">Moto onda 200</p>
                 </div>
 
                 <div class="testimonial-card fade-in-up" style="animation-delay: 0.1s;">
                     <div class="star-rating">★★★★★</div>
-                    <p class="text-gray-300 mb-4 text-sm italic">"Precios justos, trabajo de calidad. Definitivamente vuelvo para más servicios."</p>
-                    <p class="text-coral font-bold">María González</p>
-                    <p class="text-xs text-gray-400">Soledad</p>
+                    <p class="text-gray-300 mb-4">"La pintura personalizada superó mis expectativas. Es un trabajo de arte. Muy recomendado"</p>
+                    <p class="text-white font-semibold">Diana L.</p>
+                    <p class="text-sm text-gray-400">Moto harley</p>
                 </div>
 
                 <div class="testimonial-card fade-in-up" style="animation-delay: 0.2s;">
                     <div class="star-rating">★★★★★</div>
-                    <p class="text-gray-300 mb-4 text-sm italic">"Recomendado 100%. El servicio al cliente es de verdad excelente."</p>
-                    <p class="text-coral font-bold">Carlos Ruiz</p>
-                    <p class="text-xs text-gray-400">Puerto Colombia</p>
+                    <p class="text-gray-300 mb-4">"Mi silla quedó mejor que nueva. Cómoda, hermosa y con garantía. A esto sí vale la pena"</p>
+                    <p class="text-white font-semibold">Roberto G.</p>
+                    <p class="text-sm text-gray-400">Moto yamaha</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="section-divider"></div>
-
-    <!-- Nuestros Trabajos - Gallery Section -->
-    <section class="py-14 px-4 gallery-section">
+    <!-- Galería -->
+    <section class="py-14 px-4 bg-navy relative">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-8">
-                <h2 class="text-white mb-4">Nuestros Trabajos</h2>
-                <p class="text-gray-400 text-lg">Destaca en la carretera con nuestra tapicería única y duradera</p>
+                <h2 class="text-white mb-4">Mira cómo quedan</h2>
+                <p class="text-gray-400 text-lg">Cada casco y silla es un proyecto único</p>
             </div>
 
             <div class="gallery-grid">
                 <div class="gallery-item fade-in-up">
                     <img src="img/tapizado-premium-interior.jpg" alt="Tapizado Interior Premium">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Tapizado Interior Premium</div>
-                    </div>
+                    <div class="gallery-overlay"><div class="gallery-caption">Tapizado Interior Premium</div></div>
                 </div>
-
                 <div class="gallery-item fade-in-up" style="animation-delay: 0.1s;">
                     <img src="img/pintura-personalizada-shaft.jpg" alt="Pintura Personalizada">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Pintura Personalizada</div>
-                    </div>
+                    <div class="gallery-overlay"><div class="gallery-caption">Pintura Personalizada</div></div>
                 </div>
-
                 <div class="gallery-item fade-in-up" style="animation-delay: 0.2s;">
                     <img src="img/casco-ich-iridium.jpg" alt="Casco ICH con Visor Iridium">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Casco ICH con Visor Iridium</div>
-                    </div>
+                    <div class="gallery-overlay"><div class="gallery-caption">Casco ICH con Visor Iridium</div></div>
                 </div>
-
                 <div class="gallery-item fade-in-up" style="animation-delay: 0.3s;">
                     <img src="img/silla-boxer-tapizada.jpg" alt="Tapizado Silla Boxer">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Tapizado Silla Boxer</div>
-                    </div>
+                    <div class="gallery-overlay"><div class="gallery-caption">Tapizado Silla Boxer</div></div>
                 </div>
-
                 <div class="gallery-item fade-in-up" style="animation-delay: 0.4s;">
                     <img src="img/cascos-cross-gafas.jpg" alt="Cascos Cross + Gafas">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Cascos Cross + Gafas</div>
-                    </div>
+                    <div class="gallery-overlay"><div class="gallery-caption">Cascos Cross + Gafas</div></div>
                 </div>
-
                 <div class="gallery-item fade-in-up" style="animation-delay: 0.5s;">
                     <img src="img/tapizado-shaft-original.jpg" alt="Tapizado Shaft Tipo Original">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Tapizado Shaft Tipo Original</div>
-                    </div>
+                    <div class="gallery-overlay"><div class="gallery-caption">Tapizado Shaft Tipo Original</div></div>
                 </div>
-
                 <div class="gallery-item fade-in-up" style="animation-delay: 0.6s;">
                     <img src="img/pintura-personalizada-purple.jpg" alt="Pintura Personalizada Shaft">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Pintura Personalizada Shaft</div>
-                    </div>
+                    <div class="gallery-overlay"><div class="gallery-caption">Pintura Personalizada Shaft</div></div>
                 </div>
-
                 <div class="gallery-item fade-in-up" style="animation-delay: 0.7s;">
                     <img src="img/silla-suzuki-tapizada.jpg" alt="Tapizado Silla Suzuki AX4">
-                    <div class="gallery-overlay">
-                        <div class="gallery-caption">Tapizado Silla Suzuki AX4</div>
-                    </div>
+                    <div class="gallery-overlay"><div class="gallery-caption">Tapizado Silla Suzuki AX4</div></div>
                 </div>
             </div>
 
-            <div class="text-center mt-16">
-                <a href="https://www.instagram.com/tapicascosbq" target="_blank" class="gallery-cta">Ver más en Instagram</a>
+            <div class="text-center mt-12">
+                <a href="https://www.instagram.com/tapicascosbq" target="_blank" class="gallery-cta">Síguenos en Instagram para más diseños</a>
             </div>
         </div>
     </section>
-
-    <div class="section-divider"></div>
 
     <!-- Ubicación y Contacto -->
     <section id="ubicacion" class="py-14 px-4 bg-navy relative">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-white mb-4">Ubicación y Contacto</h2>
-                <p class="text-gray-400">Visítanos en Barranquilla</p>
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-8">
+                <h2 class="text-white mb-4">Visítanos o escríbenos</h2>
+                <p class="text-gray-400 text-lg">Estamos en el centro de Barranquilla, fácil de llegar</p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-                <div class="glass rounded-lg p-6 fade-in-left">
-                    <svg class="w-8 h-8 text-coral mb-3" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"></path>
-                    </svg>
-                    <h3 class="text-white font-bold mb-2">Dirección</h3>
-                    <p class="text-gray-300 text-sm">Calle 44 #21b-15<br>San José, Barranquilla<br>Colombia</p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="fade-in-left">
+                    <div class="space-y-4">
+                        <div class="trust-badge">
+                            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-13c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5z"></path></svg>
+                            <div>
+                                <p class="text-white font-semibold">Ubicación</p>
+                                <p class="text-gray-400 text-sm">Centro de Barranquilla</p>
+                                <p class="text-coral text-sm font-semibold">Cra 45 # 82-30</p>
+                            </div>
+                        </div>
+
+                        <div class="trust-badge">
+                            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-13c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5z"></path></svg>
+                            <div>
+                                <p class="text-white font-semibold">Teléfono</p>
+                                <p class="text-gray-400 text-sm">Llamadas y WhatsApp</p>
+                                <p class="text-coral text-sm font-semibold">+57 300 319 9232</p>
+                            </div>
+                        </div>
+
+                        <div class="trust-badge">
+                            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-13c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5z"></path></svg>
+                            <div>
+                                <p class="text-white font-semibold">Horario</p>
+                                <p class="text-gray-400 text-sm">Lunes a Sábado</p>
+                                <p class="text-coral text-sm font-semibold">8:00 AM - 6:00 PM</p>
+                            </div>
+                        </div>
+
+                        <a href="https://wa.me/573003199232" target="_blank" class="btn btn-primary w-full text-center block mt-4">Escríbeme por WhatsApp</a>
+                    </div>
                 </div>
 
-                <div class="glass rounded-lg p-6 fade-in-up">
-                    <svg class="w-8 h-8 text-coral mb-3" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"></path>
-                    </svg>
-                    <h3 class="text-white font-bold mb-2">Horario</h3>
-                    <p class="text-gray-300 text-sm">Lunes a Sábado<br>8:30 AM - 7:00 PM<br>Domingos: Cerrado</p>
+                <div class="fade-in-right">
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3921.3847826476467!2d-74.78254!3d10.9603!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef42d7f5d5f5f5d%3A0x5f5f5f5f5f5f5f5f!2sBarranquilla!5e0!3m2!1ses!2sco!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
                 </div>
-
-                <div class="glass rounded-lg p-6 fade-in-right">
-                    <svg class="w-8 h-8 text-coral mb-3" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path>
-                    </svg>
-                    <h3 class="text-white font-bold mb-2">WhatsApp</h3>
-                    <p class="text-gray-300 text-sm">Negocio: 300 319 9232<br>Personal: 301 637 6867</p>
-                </div>
-            </div>
-
-            <div class="map-container fade-in-up">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3926.154819748568!2d-74.78598!3d10.962655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef42a98a8e8e8e8%3A0x8e8e8e8e8e8e8e8e!2sCalle%2044%20%2321b-15%2C%20San%20Jos%C3%A9%2C%20Barranquilla!5e0!3m2!1ses!2sco!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>
 
-    <div class="section-divider"></div>
-
     <!-- Footer -->
-    <footer class="py-12 px-4 bg-dark-navy border-t border-coral border-opacity-20">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <h3 class="text-white font-bold mb-4">Tapicascos</h3>
-                    <p class="text-gray-400 text-sm">Personalización premium de cascos en Barranquilla, Colombia.</p>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold mb-3 text-sm">Servicios</h4>
-                    <ul class="text-gray-400 text-sm space-y-2">
-                        <li><a href="#servicios" class="hover:text-coral transition-colors">Tapizado Cascos</a></li>
-                        <li><a href="#servicios" class="hover:text-coral transition-colors">Pintura</a></li>
-                        <li><a href="#accesorios" class="hover:text-coral transition-colors">Visores</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold mb-3 text-sm">Síguenos</h4>
-                    <ul class="text-gray-400 text-sm space-y-2">
-                        <li><a href="https://instagram.com/tapicascosbq" target="_blank" class="hover:text-coral transition-colors">Instagram @tapicascosbq</a></li>
-                        <li><a href="https://facebook.com" target="_blank" class="hover:text-coral transition-colors">Facebook</a></li>
-                        <li><a href="https://tiktok.com" target="_blank" class="hover:text-coral transition-colors">TikTok</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold mb-3 text-sm">Contacto</h4>
-                    <p class="text-gray-400 text-sm">WhatsApp: 300 319 9232</p>
-                    <p class="text-gray-400 text-sm">Barranquilla, Colombia</p>
-                </div>
-            </div>
-
-            <div class="border-t border-coral border-opacity-10 pt-8">
-                <p class="text-center text-gray-400 text-sm">&copy; 2025 Tapicascos Barranquilla. Todos los derechos reservados.</p>
-            </div>
+    <footer class="bg-gradient-to-b from-navy to-dark-navy py-8 px-4 border-t border-coral border-opacity-20">
+        <div class="max-w-7xl mx-auto text-center">
+            <p class="text-gray-400 mb-2">Tapicascos Barranquilla - Personalización Premium de Cascos</p>
+            <p class="text-gray-500 text-sm">Copyright 2025-2026. Todos los derechos reservados.</p>
         </div>
     </footer>
-
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/573003199232" target="_blank" class="whatsapp-float" title="Chat en WhatsApp">
-        <svg fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004c-1.425 0-2.835.356-4.07 1.031l-.291.16-.303-.07c-1.004-.237-1.932-.678-2.712-1.304l-.265-.219-.272.047c-.726.131-1.405.392-2.015.769l-.246.153-.26-.086C1.884 4.602 1.089 2.586 1.089 2.586S2.702 6.783 4.953 8.384l.25.165.264-.056c1.063-.221 2.168-.211 3.24.03l.271.066.282-.157c1.15-.642 2.51-1.01 3.961-1.01h.004c2.096 0 4.026.931 5.362 2.414l.234.252.31-.15c1.18-.567 2.224-1.384 3.023-2.391l.192-.271-.211.232c-.79 1.05-1.87 1.883-3.1 2.404l-.267.125.221.255c1.185 1.362 1.928 3.138 1.928 5.096 0 4.335-3.582 7.865-7.99 7.865-1.416 0-2.768-.328-3.953-.948l-.288-.142-.299.048c-1.22.186-2.48.186-3.702 0l-.299-.048-.288.142c-1.185.62-2.537.948-3.953.948-4.408 0-7.99-3.53-7.99-7.865 0-1.958.743-3.734 1.928-5.096l.221-.255-.267-.125c-1.23-.521-2.31-1.354-3.1-2.404l-.211-.232.192.271c.799 1.007 1.843 1.824 3.023 2.391l.31.15.234-.252c1.336-1.483 3.266-2.414 5.362-2.414z"></path>
-        </svg>
-    </a>
 
     <!-- Chat Widget -->
     <div id="chat-widget" style="display: none;">
         <div id="chat-container">
-            <div id="chat-messages" style="flex: 1; overflow-y: auto; margin-bottom: 1rem;"></div>
+            <div class="chat-header">
+                <h3>Asistente Tapicascos</h3>
+                <div class="chat-header-buttons">
+                    <button class="chat-header-btn" id="chat-mic-btn" title="Micrófono">
+                        <svg fill="currentColor" viewBox="0 0 24 24" style="width: 1.2rem; height: 1.2rem;"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"></path><path d="M17 16.91c-1.48 1.46-3.51 2.36-5.7 2.36-2.2 0-4.2-.9-5.7-2.36m0 0l1.41-1.41c1.26 1.27 3.01 2.05 4.93 2.05 1.92 0 3.67-.78 4.93-2.05l1.41 1.41z"></path></svg>
+                    </button>
+                    <button class="chat-header-btn" id="chat-close-btn" title="Cerrar">
+                        <svg fill="currentColor" viewBox="0 0 24 24" style="width: 1.2rem; height: 1.2rem;"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="voice-status" id="voice-status" style="display: none;">Listo para escuchar</div>
+            <div id="chat-messages" style="flex: 1; overflow-y: auto; margin-bottom: 1rem; max-height: 300px;"></div>
             <div id="quick-replies" style="margin-bottom: 0.75rem;"></div>
-            <input type="text" id="chat-input" placeholder="Escribe tu mensaje...">
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Escribe tu mensaje...">
+                <button class="chat-send-btn" id="chat-send-btn">
+                    <svg fill="white" viewBox="0 0 24 24" style="width: 1rem; height: 1rem;"><path d="M16.6915026,12.4744748 L3.50612381,13.2599618 C3.19218622,13.2599618 3.03521743,13.4170592 3.03521743,13.5741566 L1.15159189,20.0151496 C0.8376543,20.8006365 0.99,21.89 1.77946707,22.52 C2.41,22.99 3.50612381,23.1 4.13399899,22.9429026 L21.714504,14.0454487 C22.6563168,13.5741566 23.1272231,12.6315722 22.9702544,11.6889879 L4.13399899,2.79156038 C3.34915502,2.45564521 2.40734225,2.56575899 1.77946707,3.0370571 C0.994623095,3.50876024 0.837654326,4.49128957 1.15159189,5.27678646 L3.03521743,11.7177794 C3.03521743,11.8748768 3.19218622,12.0319742 3.50612381,12.0319742 L16.6915026,12.8174611 C16.6915026,12.8174611 17.1624089,12.8174611 17.1624089,12.4744748 C17.1624089,12.1314885 16.6915026,12.4744748 16.6915026,12.4744748 Z"></path></svg>
+                </button>
+            </div>
+        </div>
+        <div id="chat-bubble">
+            <svg fill="white" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"></path></svg>
         </div>
     </div>
 
-    <div id="chat-bubble">
-        <svg fill="currentColor" viewBox="0 0 24 24">
-            <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12h-8v2h8v-2zm0-3h-8v2h8V11zm0-3H4v2h14V8z"></path>
-        </svg>
-    </div>
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/573003199232" target="_blank" class="whatsapp-float" title="Escribir por WhatsApp">
+        <svg fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004c-1.44 0-2.846.56-3.882 1.568-1.036 1.008-1.609 2.361-1.609 3.834 0 2.976 2.423 5.399 5.409 5.399 1.437 0 2.842-.557 3.877-1.565 1.035-1.008 1.608-2.36 1.608-3.833 0-2.976-2.422-5.399-5.408-5.399m7.496-8.356c-.622-1.565-1.596-2.964-2.783-4.063-2.354-2.265-5.554-3.659-9.035-3.659-7.033 0-12.784 5.75-12.784 12.783 0 2.247.586 4.453 1.694 6.399L1.992 24l6.616-1.736c1.867 1.026 3.968 1.568 6.123 1.568 7.033 0 12.783-5.75 12.783-12.783 0-3.481-1.394-6.681-3.639-9.036"/></svg>
+    </a>
 
     <script>
-        // Initialize scroll animations with IntersectionObserver
-        document.addEventListener('DOMContentLoaded', () => {
-            const animateElements = document.querySelectorAll('.animate-on-scroll, .fade-in-up, .fade-in-left, .fade-in-right, .gallery-item');
-
-            // Add hidden class via JS so elements are visible if JS fails
-            animateElements.forEach(el => el.classList.add('hidden'));
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.remove('hidden');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-            animateElements.forEach(el => observer.observe(el));
-
-            // Ultimate fallback: make everything visible after 2 seconds
-            setTimeout(() => {
-                animateElements.forEach(el => el.classList.remove('hidden'));
-            }, 2000);
-        });
-
-        const services = {
-            'tapizado': {
-                title: 'Servicios de Tapizado',
-                items: [
-                    { name: 'Tapizado completo casco sencillo', price: '$40.000', time: '1 día' },
-                    { name: 'Tapizado completo casco certificado', price: '$60.000', time: '1 día' },
-                    { name: 'Tapizado completo tipo original', price: '$90.000', time: '2 días' }
-                ]
-            },
-            'cachetes': {
-                title: 'Cambio de Cachetes',
-                items: [
-                    { name: 'Cambio par cachetes sencillo', price: '$20.000' },
-                    { name: 'Cambio par cachetes original', price: '$35.000' }
-                ]
-            },
-            'visores': {
-                title: 'Visores Disponibles',
-                items: [
-                    { name: 'Visor ICH 501', price: '$18.000' },
-                    { name: 'Visor ICH 3120', price: '$25.000' },
-                    { name: 'Visor Shaft 821-581', price: '$50.000' },
-                    { name: 'Visor HRO 3400', price: '$65.000' }
-                ]
-            },
-            'sillas': {
-                title: 'Tapizado de Sillas',
-                items: [
-                    { name: 'Silla Boxer', price: '$45.000' },
-                    { name: 'Silla Pulsar 200', price: '$60.000' },
-                    { name: 'Silla XTZ', price: '$70.000' }
-                ]
-            }
-        };
-
-        const quickReplies = [
-            { text: 'Precios tapizado', key: 'tapizado' },
-            { text: 'Visores', key: 'visores' },
-            { text: 'Sillas de moto', key: 'sillas' },
-            { text: 'Ubicación', key: 'location' },
-            { text: 'Cambiatón', key: 'promos' }
-        ];
-
-        let chatOpen = false;
-        const chatBubble = document.getElementById('chat-bubble');
-        const chatWidget = document.getElementById('chat-widget');
-        const chatMessages = document.getElementById('chat-messages');
-        const chatInput = document.getElementById('chat-input');
-        const quickRepliesDiv = document.getElementById('quick-replies');
-
-        chatBubble.addEventListener('click', () => {
-            chatOpen = !chatOpen;
-            chatWidget.style.display = chatOpen ? 'flex' : 'none';
-            if (chatOpen && chatMessages.children.length === 0) {
-                addBotMessage("¡Ey, qué más! Bienvenido a Tapicascos Barranquilla. ¿En qué te puedo ayudar, parcero?");
-                renderQuickReplies();
-            }
-        });
-
-        function addBotMessage(text) {
-            const msg = document.createElement('div');
-            msg.className = 'chat-message bot';
-            msg.innerHTML = `<div class="chat-message-content">${text}</div>`;
-            chatMessages.appendChild(msg);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function addUserMessage(text) {
-            const msg = document.createElement('div');
-            msg.className = 'chat-message user';
-            msg.innerHTML = `<div class="chat-message-content">${text}</div>`;
-            chatMessages.appendChild(msg);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function renderQuickReplies() {
-            quickRepliesDiv.innerHTML = '';
-            quickReplies.forEach(reply => {
-                const btn = document.createElement('button');
-                btn.className = 'quick-reply-btn';
-                btn.textContent = reply.text;
-                btn.onclick = () => handleQuickReply(reply);
-                quickRepliesDiv.appendChild(btn);
-            });
-        }
-
-        function handleQuickReply(reply) {
-            addUserMessage(reply.text);
-            chatInput.value = '';
-
-            if (reply.key === 'tapizado' || reply.key === 'visores' || reply.key === 'sillas') {
-                const data = services[reply.key];
-                let response = `<strong>${data.title}:</strong><br>`;
-                data.items.forEach(item => {
-                    response += `• ${item.name}: ${item.price}${item.time ? ` (${item.time})` : ''}<br>`;
-                });
-                addBotMessage(response);
-            } else if (reply.key === 'location') {
-                addBotMessage("Calle 44 #21b-15, San José<br>Lunes a Sábado 8:30 AM - 7:00 PM<br>¿Te gustaría nuestro WhatsApp?");
-            } else if (reply.key === 'promos') {
-                addBotMessage("Cascos nuevos desde $100.000, segunda mano desde $75.000. ¡Llama al 300 319 9232!");
-            }
-
-            setTimeout(renderQuickReplies, 500);
-        }
-
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && chatInput.value.trim()) {
-                const userText = chatInput.value.trim();
-                addUserMessage(userText);
-                chatInput.value = '';
-
-                let response = "Para más información, contáctame por WhatsApp";
-
-                if (userText.toLowerCase().includes('precio') || userText.toLowerCase().includes('costo')) {
-                    response = "Tenemos servicios desde $15.000. ¿Qué tipo específicamente?";
-                } else if (userText.toLowerCase().includes('tapizado')) {
-                    response = "Tapizado: $40K-$90K según el tipo. ¿Quieres más detalles?";
-                } else if (userText.toLowerCase().includes('horario') || userText.toLowerCase().includes('abierto')) {
-                    response = "Abierto Lunes a Sábado 8:30 AM a 7:00 PM";
-                } else if (userText.toLowerCase().includes('ubicación') || userText.toLowerCase().includes('donde')) {
-                    response = "Calle 44 #21b-15, San José, Barranquilla";
-                } else if (userText.toLowerCase().includes('whatsapp') || userText.toLowerCase().includes('contacto')) {
-                    response = "WhatsApp: 300 319 9232 - ¡Contáctame!";
-                }
-
-                setTimeout(() => {
-                    addBotMessage(response);
-                    setTimeout(renderQuickReplies, 300);
-                }, 500);
-            }
-        });
-
-
-        // Mobile menu toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (menuBtn && mobileMenu) {
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-            document.querySelectorAll('.mobile-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
-        }
-
+        const nav = document.querySelector('nav');
         window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
             if (window.scrollY > 50) {
                 nav.classList.add('scrolled');
             } else {
@@ -1637,15 +1748,316 @@
             }
         });
 
-        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
             });
         });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('hidden');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right').forEach(el => {
+            el.classList.add('hidden');
+            observer.observe(el);
+        });
+
+        const quoteItems = {
+            cascos: [
+                { name: 'Tapizado Completo', price: 40000 },
+                { name: 'Tapizado Certificado', price: 60000 },
+                { name: 'Tapizado Original', price: 90000 },
+                { name: 'Cambio Cachetes', price: 25000 },
+                { name: 'Cambio Badana', price: 35000 },
+                { name: 'Kit Completo', price: 110000 }
+            ],
+            pintura: [
+                { name: 'Diseño Personalizado', price: 80000 },
+                { name: 'Pintura Metalizada', price: 120000 }
+            ],
+            accesorios: [
+                { name: 'Visor Ahumado', price: 35000 },
+                { name: 'Visor Espejado', price: 45000 },
+                { name: 'Visor Claro', price: 30000 },
+                { name: 'Barbiquejo de Cuero', price: 18000 },
+                { name: 'Almohadillas Extra', price: 15000 },
+                { name: 'Pack de Accesorios', price: 55000 }
+            ],
+            sillas: [
+                { name: 'Silla Estándar', price: 45000 },
+                { name: 'Silla Cuero Premium', price: 75000 },
+                { name: 'Silla Gel Confort', price: 95000 },
+                { name: 'Silla Personalizada', price: 125000 }
+            ]
+        };
+
+        let selectedQuote = {};
+
+        function renderQuoteBuilder() {
+            Object.keys(quoteItems).forEach(category => {
+                const container = document.getElementById(`quote-${category}`);
+                container.innerHTML = quoteItems[category].map(item => `
+                    <div class="quote-item">
+                        <div class="quote-item-info">
+                            <div class="quote-item-name">${item.name}</div>
+                            <div class="quote-item-price">$${item.price.toLocaleString('es-CO')}</div>
+                        </div>
+                        <button class="quote-add-btn" onclick="addToQuote('${item.name}', ${item.price})">+</button>
+                    </div>
+                `).join('');
+            });
+        }
+
+        function addToQuote(name, price) {
+            if (!selectedQuote[name]) {
+                selectedQuote[name] = { price, quantity: 0 };
+            }
+            selectedQuote[name].quantity++;
+            updateQuoteSummary();
+        }
+
+        function removeFromQuote(name) {
+            delete selectedQuote[name];
+            updateQuoteSummary();
+        }
+
+        function updateQuoteSummary() {
+            const itemsContainer = document.getElementById('quote-selected-items');
+            const totalAmount = document.getElementById('quote-total-amount');
+
+            const items = Object.entries(selectedQuote);
+            if (items.length === 0) {
+                itemsContainer.innerHTML = '<p class="text-gray-400 text-center text-sm py-4">Selecciona servicios para comenzar</p>';
+                totalAmount.textContent = '$0';
+                return;
+            }
+
+            let total = 0;
+            itemsContainer.innerHTML = items.map(([name, data]) => {
+                const subtotal = data.price * data.quantity;
+                total += subtotal;
+                return `
+                    <div class="quote-selected-item">
+                        <div class="quote-selected-item-info">
+                            <div class="quote-selected-item-name">${name}</div>
+                            <div class="quote-selected-item-qty">x${data.quantity} = $${subtotal.toLocaleString('es-CO')}</div>
+                        </div>
+                        <button class="quote-selected-item-remove" onclick="removeFromQuote('${name}')">
+                            <svg fill="currentColor" viewBox="0 0 24 24" style="width: 1rem; height: 1rem;"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+                        </button>
+                    </div>
+                `;
+            }).join('');
+
+            totalAmount.textContent = `$${total.toLocaleString('es-CO')}`;
+        }
+
+        function clearQuote() {
+            selectedQuote = {};
+            updateQuoteSummary();
+        }
+
+        function sendQuoteViaWhatsApp() {
+            if (Object.keys(selectedQuote).length === 0) {
+                alert('Por favor selecciona al menos un servicio');
+                return;
+            }
+
+            let message = 'Hola Tapicascos! Me gustaría cotizar los siguientes servicios:%0A%0A';
+            let total = 0;
+
+            Object.entries(selectedQuote).forEach(([name, data]) => {
+                const subtotal = data.price * data.quantity;
+                total += subtotal;
+                message += `• ${name} (x${data.quantity}): $${subtotal.toLocaleString('es-CO')}%0A`;
+            });
+
+            message += `%0ATOTAL: $${total.toLocaleString('es-CO')}%0A%0AEspero tu respuesta para confirmar.`;
+
+            window.open(`https://wa.me/573003199232?text=${message}`, '_blank');
+        }
+
+        document.querySelectorAll('.add-to-quote').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const name = this.getAttribute('data-service');
+                const price = parseInt(this.getAttribute('data-price'));
+                addToQuote(name, price);
+                document.getElementById('cotizador').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        renderQuoteBuilder();
+
+        const chatWidget = document.getElementById('chat-widget');
+        const chatBubble = document.getElementById('chat-bubble');
+        const chatContainer = document.getElementById('chat-container');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const chatSendBtn = document.getElementById('chat-send-btn');
+        const chatCloseBtn = document.getElementById('chat-close-btn');
+        const quickReplies = document.getElementById('quick-replies');
+
+        const chatBotResponses = {
+            tapizado: "Nuestros servicios de tapizado incluyen: Tapizado Completo ($40.000), Tapizado Certificado ($60.000), Tapizado Original ($90.000) y Kit Completo ($110.000). Todos con 3 meses de garantía.",
+            visores: "Tenemos visores en stock: Ahumados ($35.000), Espejados ($45.000), Claros ($30.000) y packs de accesorios. Todos originales y compatibles.",
+            sillas: "Tapizado de sillas desde $45.000: Estándar, Cuero Premium ($75.000), Gel Confort ($95.000) y Personalizada ($125.000).",
+            pintura: "Pintura personalizada desde $80.000 con diseños exclusivos. También hacemos pintura metalizada ($120.000). Entrega en 3 días.",
+            cambiatón: "¡Cambiatón especial! Trae tu casco viejo y llévate uno nuevo desde $45.000 con descuento por tu casco usado.",
+            ubicación: "Estamos en el centro de Barranquilla: Cra 45 # 82-30. Abierto lunes a sábado de 8:00 AM a 6:00 PM.",
+            cotizar: "Usa nuestro cotizador interactivo en la sección Arma tu cotización para ver precios al instante y enviar por WhatsApp."
+        };
+
+        function normalizeText(text) {
+            return text.toLowerCase().trim().replace(/[^\w\s]/g, '');
+        }
+
+        function getBotResponse(userMessage) {
+            const normalized = normalizeText(userMessage);
+            const keywords = {
+                tapizado: ['tapizado', 'tapizar', 'cachetes', 'badana', 'kit'],
+                visores: ['visor', 'visores', 'ahumado', 'espejado', 'claro'],
+                sillas: ['silla', 'sillas', 'moto'],
+                pintura: ['pintura', 'pintar', 'diseño', 'metalizado'],
+                cambiatón: ['cambiatón', 'cambio', 'casco viejo'],
+                ubicación: ['ubicación', 'ubicacion', 'dónde', 'donde', 'dirección', 'direccion', 'horario'],
+                cotizar: ['cotizar', 'presupuesto', 'precio', 'cotizador']
+            };
+
+            for (const [key, words] of Object.entries(keywords)) {
+                if (words.some(word => normalized.includes(word))) {
+                    return chatBotResponses[key];
+                }
+            }
+
+            return "¡Ey, qué más! Soy el asistente de Tapicascos. Puedo ayudarte con precios, servicios o ubicación. También puedes usar el cotizador o escribirme al WhatsApp.";
+        }
+
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            chatMessages.innerHTML += `
+                <div class="chat-message user">
+                    <div class="chat-message-content">${escapeHtml(message)}</div>
+                </div>
+            `;
+
+            chatInput.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            setTimeout(() => {
+                const response = getBotResponse(message);
+                chatMessages.innerHTML += `
+                    <div class="chat-message bot">
+                        <div class="bot-avatar">TC</div>
+                        <div class="chat-message-content">${escapeHtml(response)}</div>
+                    </div>
+                `;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 500);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function showQuickReplies() {
+            quickReplies.innerHTML = `
+                <button class="quick-reply-btn" onclick="sendQuickReply('tapizado')">Tapizado</button>
+                <button class="quick-reply-btn" onclick="sendQuickReply('visores')">Visores</button>
+                <button class="quick-reply-btn" onclick="sendQuickReply('sillas')">Sillas</button>
+                <button class="quick-reply-btn" onclick="sendQuickReply('pintura')">Pintura</button>
+                <button class="quick-reply-btn" onclick="sendQuickReply('ubicación')">Ubicación</button>
+                <button class="quick-reply-btn" onclick="sendQuickReply('cotizar')">Cotizar</button>
+            `;
+        }
+
+        function sendQuickReply(topic) {
+            chatInput.value = topic;
+            sendMessage();
+        }
+
+        chatBubble.addEventListener('click', () => {
+            if (chatWidget.style.display === 'none') {
+                chatWidget.style.display = 'block';
+                chatMessages.innerHTML = `
+                    <div class="chat-message bot">
+                        <div class="bot-avatar">TC</div>
+                        <div class="chat-message-content">¡Ey, qué más! Soy el asistente de Tapicascos. Pregúntame por precios, servicios o ubicación. También puedo hablarle al micrófono.</div>
+                    </div>
+                `;
+                showQuickReplies();
+            }
+        });
+
+        chatCloseBtn.addEventListener('click', () => {
+            chatWidget.style.display = 'none';
+        });
+
+        chatSendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        const voiceStatus = document.getElementById('voice-status');
+        const chatMicBtn = document.getElementById('chat-mic-btn');
+        let isListening = false;
+
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'es-CO';
+
+            chatMicBtn.addEventListener('click', () => {
+                if (!isListening) {
+                    isListening = true;
+                    chatMicBtn.classList.add('listening');
+                    voiceStatus.textContent = 'Escuchando...';
+                    voiceStatus.style.display = 'block';
+                    recognition.start();
+                } else {
+                    isListening = false;
+                    chatMicBtn.classList.remove('listening');
+                    voiceStatus.style.display = 'none';
+                    recognition.stop();
+                }
+            });
+
+            recognition.onresult = (event) => {
+                let transcript = '';
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    transcript += event.results[i][0].transcript;
+                }
+                chatInput.value = transcript;
+                sendMessage();
+                isListening = false;
+                chatMicBtn.classList.remove('listening');
+                voiceStatus.style.display = 'none';
+            };
+
+            recognition.onerror = () => {
+                voiceStatus.textContent = 'Error. Intenta de nuevo.';
+            };
+        }
     </script>
 </body>
 </html>
