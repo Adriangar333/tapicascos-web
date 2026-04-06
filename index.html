@@ -537,6 +537,124 @@
             height: 1.5rem;
             color: var(--coral);
             flex-shrink: 0;
+
+        .section-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+        }
+
+        @media (min-width: 768px) {
+            .section-with-image {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+                align-items: center;
+            }
+
+            .section-image {
+                margin-top: 0;
+                margin-bottom: 0;
+                height: 500px;
+            }
+        }
+
+        .gallery-section {
+            background: rgba(255, 107, 53, 0.05);
+            border-top: 1px solid rgba(255, 107, 53, 0.1);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            aspect-ratio: 1;
+            cursor: pointer;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 14, 26, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-caption {
+            color: white;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            padding: 1rem;
+        }
+
+        .gallery-cta {
+            display: inline-block;
+            margin-top: 1rem;
+            background: linear-gradient(135deg, var(--coral) 0%, #FF8C5A 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .gallery-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         }
     </style>
 </head>
@@ -606,6 +724,10 @@
             <div class="text-center mb-16">
                 <h2 class="text-white mb-4">Servicios de Cascos</h2>
                 <p class="text-gray-400 text-lg">Personalización profesional con garantía de 3 meses</p>
+            </div>
+
+            <div class="fade-in-up" style="margin-bottom: 2rem;">
+                <img src="img/tapizado-premium-interior.jpg" alt="Tapizado Interior Premium" class="section-image">
             </div>
 
             <div class="services-grid">
@@ -1071,6 +1193,80 @@
 
     <div class="section-divider"></div>
 
+    <!-- Nuestros Trabajos - Gallery Section -->
+    <section class="py-20 px-4 gallery-section">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-white mb-4">Nuestros Trabajos</h2>
+                <p class="text-gray-400 text-lg">Destaca en la carretera con nuestra tapicería única y duradera</p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item fade-in-up">
+                    <img src="img/tapizado-premium-interior.jpg" alt="Tapizado Interior Premium">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Tapizado Interior Premium</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-up" style="animation-delay: 0.1s;">
+                    <img src="img/pintura-personalizada-shaft.jpg" alt="Pintura Personalizada">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Pintura Personalizada</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-up" style="animation-delay: 0.2s;">
+                    <img src="img/casco-ich-iridium.jpg" alt="Casco ICH con Visor Iridium">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Casco ICH con Visor Iridium</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-up" style="animation-delay: 0.3s;">
+                    <img src="img/silla-boxer-tapizada.jpg" alt="Tapizado Silla Boxer">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Tapizado Silla Boxer</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-up" style="animation-delay: 0.4s;">
+                    <img src="img/cascos-cross-gafas.jpg" alt="Cascos Cross + Gafas">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Cascos Cross + Gafas</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-up" style="animation-delay: 0.5s;">
+                    <img src="img/tapizado-shaft-original.jpg" alt="Tapizado Shaft Tipo Original">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Tapizado Shaft Tipo Original</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-up" style="animation-delay: 0.6s;">
+                    <img src="img/pintura-personalizada-purple.jpg" alt="Pintura Personalizada Shaft">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Pintura Personalizada Shaft</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-up" style="animation-delay: 0.7s;">
+                    <img src="img/silla-suzuki-tapizada.jpg" alt="Tapizado Silla Suzuki AX4">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Tapizado Silla Suzuki AX4</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-16">
+                <a href="https://www.instagram.com/tapicascosbq" target="_blank" class="gallery-cta">Ver más en Instagram</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
     <!-- Ubicación y Contacto -->
     <section id="ubicacion" class="py-20 px-4 bg-navy relative">
         <div class="max-w-6xl mx-auto">
@@ -1310,6 +1506,25 @@
 
         setTimeout(() => {
             gsap.utils.toArray(".fade-in-up").forEach((element) => {
+                gsap.to(element, {
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 95%',
+                        once: true,
+                    },
+                    duration: 0.8,
+                    opacity: 1,
+                    y: 0,
+                    ease: 'power2.out'
+                });
+
+                setTimeout(() => {
+                    gsap.set(element, { opacity: 1, y: 0 });
+                }, 3000);
+            });
+
+            // Animate gallery items
+            gsap.utils.toArray(".gallery-item").forEach((element) => {
                 gsap.to(element, {
                     scrollTrigger: {
                         trigger: element,
