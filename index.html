@@ -11,6 +11,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#0A0E1A',
+                        coral: '#FF6B35',
+                        gold: '#FFD700',
+                        'light-navy': '#1A1F3A',
+                        'dark-navy': '#050609',
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
         * {
@@ -43,9 +58,9 @@
             letter-spacing: 0.05em;
         }
 
-        h1 { font-size: 3.5rem; }
-        h2 { font-size: 2.5rem; }
-        h3 { font-size: 1.75rem; }
+        h1 { font-size: 3.5rem !important; }
+        h2 { font-size: 2.5rem !important; }
+        h3 { font-size: 1.75rem !important; }
 
         .glass {
             background: rgba(255, 255, 255, 0.05);
@@ -503,9 +518,9 @@
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 1.75rem; }
-            h3 { font-size: 1.25rem; }
+            h1 { font-size: 2.5rem !important; }
+            h2 { font-size: 1.75rem !important; }
+            h3 { font-size: 1.25rem !important; }
 
             .services-grid {
                 grid-template-columns: 1fr;
@@ -700,8 +715,6 @@
                 grid-template-columns: 1fr;
             }
         }
-
-        }
     </style>
 </head>
 <body>
@@ -726,6 +739,17 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden" style="background: rgba(10, 14, 26, 0.98); backdrop-filter: blur(10px);">
+            <div class="px-4 py-6 flex flex-col gap-4">
+                <a href="#servicios" class="text-lg font-medium text-gray-200 hover:text-coral transition-colors mobile-link">Servicios</a>
+                <a href="#accesorios" class="text-lg font-medium text-gray-200 hover:text-coral transition-colors mobile-link">Accesorios</a>
+                <a href="#sillas" class="text-lg font-medium text-gray-200 hover:text-coral transition-colors mobile-link">Sillas</a>
+                <a href="#ubicacion" class="text-lg font-medium text-gray-200 hover:text-coral transition-colors mobile-link">Ubicación</a>
+                <a href="https://wa.me/573003199232" target="_blank" class="btn btn-primary text-center">WhatsApp</a>
+            </div>
         </div>
     </nav>
 
@@ -948,28 +972,28 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="glass rounded-lg p-6 text-center fade-in-up">
                     <h3 class="text-white text-lg font-bold mb-2">Casco Nuevo</h3>
-                    <p class="text-2xl font-bold text-navy mb-2">Desde $100.000</p>
+                    <p class="text-2xl font-bold text-white mb-2">Desde $100.000</p>
                     <p class="text-sm text-white opacity-90">Con tu casco viejo</p>
                     <p class="text-xs text-white opacity-75 mt-2">Entrega Inmediata</p>
                 </div>
 
                 <div class="glass rounded-lg p-6 text-center fade-in-up" style="animation-delay: 0.1s;">
                     <h3 class="text-white text-lg font-bold mb-2">Segunda Mano</h3>
-                    <p class="text-2xl font-bold text-navy mb-2">Desde $75.000</p>
+                    <p class="text-2xl font-bold text-white mb-2">Desde $75.000</p>
                     <p class="text-sm text-white opacity-90">Como nuevos</p>
                     <p class="text-xs text-white opacity-75 mt-2">Garantizados</p>
                 </div>
 
                 <div class="glass rounded-lg p-6 text-center fade-in-up" style="animation-delay: 0.2s;">
                     <h3 class="text-white text-lg font-bold mb-2">Cross Económico</h3>
-                    <p class="text-2xl font-bold text-navy mb-2">$45.000</p>
+                    <p class="text-2xl font-bold text-white mb-2">$45.000</p>
                     <p class="text-sm text-white opacity-90">Resistente y cómodo</p>
                     <p class="text-xs text-white opacity-75 mt-2">Stock disponible</p>
                 </div>
 
                 <div class="glass rounded-lg p-6 text-center fade-in-up" style="animation-delay: 0.3s;">
                     <h3 class="text-white text-lg font-bold mb-2">Gafas Cross</h3>
-                    <p class="text-2xl font-bold text-navy mb-2">$18.000</p>
+                    <p class="text-2xl font-bold text-white mb-2">$18.000</p>
                     <p class="text-sm text-white opacity-90">Sencillas</p>
                     <p class="text-xs text-white opacity-75 mt-2">Protección total</p>
                 </div>
@@ -1399,7 +1423,7 @@
             </div>
 
             <div class="border-t border-coral border-opacity-10 pt-8">
-                <p class="text-center text-gray-400 text-sm">&copy; 2024 Tapicascos Barranquilla. Todos los derechos reservados.</p>
+                <p class="text-center text-gray-400 text-sm">&copy; 2025 Tapicascos Barranquilla. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
@@ -1584,6 +1608,20 @@
             }
         });
 
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
 
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
