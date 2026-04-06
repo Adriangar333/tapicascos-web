@@ -880,9 +880,9 @@
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
-        .fade-in-up.hidden {
-            opacity: 0;
-            transform: translateY(20px);
+        .fade-in-up.anim-hidden {
+            opacity: 0 !important;
+            transform: translateY(20px) !important;
         }
 
         .fade-in-left {
@@ -891,9 +891,9 @@
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
-        .fade-in-left.hidden {
-            opacity: 0;
-            transform: translateX(-20px);
+        .fade-in-left.anim-hidden {
+            opacity: 0 !important;
+            transform: translateX(-20px) !important;
         }
 
         .fade-in-right {
@@ -902,9 +902,9 @@
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
-        .fade-in-right.hidden {
-            opacity: 0;
-            transform: translateX(20px);
+        .fade-in-right.anim-hidden {
+            opacity: 0 !important;
+            transform: translateX(20px) !important;
         }
 
         .services-grid {
@@ -1871,8 +1871,8 @@
     </footer>
 
     <!-- Chat Widget -->
-    <div id="chat-widget" style="display: none;">
-        <div id="chat-container">
+    <div id="chat-widget">
+        <div id="chat-container" style="display: none;">
             <div class="chat-header">
                 <h3>Asistente Tapicascos</h3>
                 <div class="chat-header-buttons">
@@ -1934,7 +1934,8 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.remove('hidden');
+                    entry.target.classList.remove('anim-hidden');
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
@@ -1968,7 +1969,7 @@
         }
 
         document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right').forEach(el => {
-            el.classList.add('hidden');
+            el.classList.add('anim-hidden');
             observer.observe(el);
         });
 
@@ -2191,20 +2192,24 @@
         }
 
         chatBubble.addEventListener('click', () => {
-            if (chatWidget.style.display === 'none') {
-                chatWidget.style.display = 'block';
-                chatMessages.innerHTML = `
-                    <div class="chat-message bot">
-                        <div class="bot-avatar">TC</div>
-                        <div class="chat-message-content">¡Ey, qué más! Soy el asistente de Tapicascos. Pregúntame por precios, servicios o ubicación. También puedo hablarle al micrófono.</div>
-                    </div>
-                `;
-                showQuickReplies();
+            if (chatContainer.style.display === 'none') {
+                chatContainer.style.display = 'flex';
+                chatBubble.style.display = 'none';
+                if (!chatMessages.innerHTML.trim()) {
+                    chatMessages.innerHTML = `
+                        <div class="chat-message bot">
+                            <div class="bot-avatar">TC</div>
+                            <div class="chat-message-content">¡Ey, qué más! Soy el asistente de Tapicascos. Pregúntame por precios, servicios o ubicación. También puedes usar el micrófono para hablarme.</div>
+                        </div>
+                    `;
+                    showQuickReplies();
+                }
             }
         });
 
         chatCloseBtn.addEventListener('click', () => {
-            chatWidget.style.display = 'none';
+            chatContainer.style.display = 'none';
+            chatBubble.style.display = 'flex';
         });
 
         chatSendBtn.addEventListener('click', sendMessage);
