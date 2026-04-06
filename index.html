@@ -1927,8 +1927,8 @@
         });
 
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0,
+            rootMargin: '100px 0px 100px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -1939,6 +1939,13 @@
                 }
             });
         }, observerOptions);
+
+        // Safety fallback: reveal all after 3s
+        setTimeout(() => {
+            document.querySelectorAll('.anim-hidden').forEach(el => {
+                el.classList.remove('anim-hidden');
+            });
+        }, 3000);
 
         // Animated Counter
         const counterEl = document.getElementById('counter-clientes');
